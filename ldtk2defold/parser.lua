@@ -28,7 +28,7 @@ end
 
 local function parse_hex(hex)
     local r, g, b, a = hex:match("#(%x%x)(%x%x)(%x%x)(%x?%x?)")
-    a = a ~= '' or 'ff'
+    if a=='' then a = 'ff' end
     return { tonumber(r, 16) / 255, tonumber(g, 16) / 255, tonumber(b, 16) / 255, tonumber(a, 16) / 255 }
 end
 

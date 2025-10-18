@@ -11,7 +11,7 @@
 	"iid": "27a7b3d0-c210-11ef-bc88-b986cdd22abe",
 	"jsonVersion": "1.5.3",
 	"appBuildId": 473703,
-	"nextUid": 80,
+	"nextUid": 81,
 	"identifierStyle": "Capitalize",
 	"toc": [],
 	"worldLayout": "Free",
@@ -137,7 +137,7 @@
 			"autoTilesKilledByOtherLayerUid": null,
 			"uiFilterTags": [],
 			"useAsyncRender": false,
-			"intGridValues": [{ "value": 1, "identifier": null, "color": "#000000", "tile": null, "groupUid": 0 }],
+			"intGridValues": [{ "value": 1, "identifier": "ground", "color": "#000000", "tile": null, "groupUid": 0 }],
 			"intGridValuesGroups": [],
 			"autoRuleGroups": [
 				{
@@ -1589,7 +1589,12 @@
 				"averageColors": "f678f667f667f678f678f667f567f6670000f567f233f234f567f557f667f234f2340000f567f233f233f567f556f233f234f2340000f567f345f445f567f345f345f234f234f234b67747784778b677f456f456f234f234f234f445f456f456f4457445ba67f234f234f234f234f334f334f23434459c78f234f234f234b44644574457b4464333a867f234f234f2345666000065674345732334455a7724563b88"
 			}
 		}
-	], "enums": [], "externalEnums": [], "levelFields": [] },
+	], "enums": [{ "identifier": "Items", "uid": 80, "values": [
+		{ "id": "Items0", "tileRect": null, "color": 12470831 },
+		{ "id": "Items1", "tileRect": null, "color": 14120515 },
+		{ "id": "Items2", "tileRect": null, "color": 15389866 },
+		{ "id": "Items3", "tileRect": null, "color": 14984818 }
+	], "iconTilesetUid": null, "externalRelPath": null, "externalFileChecksum": null, "tags": [] }], "externalEnums": [], "levelFields": [] },
 	"levels": [
 		{
 			"identifier": "Level_0",
@@ -1634,7 +1639,14 @@
 					"autoLayerTiles": [],
 					"seed": 1755011,
 					"overrideTilesetUid": null,
-					"gridTiles": [],
+					"gridTiles": [
+						{ "px": [32,96], "src": [64,256], "f": 1, "t": 74, "d": [61], "a": 1 },
+						{ "px": [512,96], "src": [64,256], "f": 0, "t": 74, "d": [76], "a": 1 },
+						{ "px": [512,128], "src": [64,256], "f": 0, "t": 74, "d": [96], "a": 1 },
+						{ "px": [512,160], "src": [64,256], "f": 0, "t": 74, "d": [116], "a": 1 },
+						{ "px": [512,192], "src": [64,256], "f": 0, "t": 74, "d": [136], "a": 1 },
+						{ "px": [160,224], "src": [64,256], "f": 1, "t": 74, "d": [145], "a": 1 }
+					],
 					"entityInstances": []
 				},
 				{
@@ -1695,7 +1707,7 @@
 						},
 						{
 							"__identifier": "Player",
-							"__grid": [2,25],
+							"__grid": [2,21],
 							"__pivot": [0.5,1],
 							"__tags": [],
 							"__tile": null,
@@ -1704,10 +1716,10 @@
 							"width": 32,
 							"height": 32,
 							"defUid": 74,
-							"px": [40,416],
+							"px": [40,352],
 							"fieldInstances": [],
 							"__worldX": 40,
-							"__worldY": 224
+							"__worldY": 160
 						},
 						{
 							"__identifier": "Terminal",

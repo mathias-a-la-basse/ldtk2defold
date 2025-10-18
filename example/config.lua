@@ -7,13 +7,13 @@ config.assign_collision = true
 config.map_type = enums.map_type.LEVELS_ONLY
 
 config.data_file = '/example/scripts/data.lua'
-config.main_collection_name = 'main'
+-- config.main_collection_name = 'main'
 
-config.collisions = {
-    ['Level_0'] = {
-        ['IntGrid'] = '/example/collisions/IntGrid.collisionobject'
-    }
-}
+-- config.collisions = {
+--     ['Level_0'] = {
+--         ['IntGrid'] = '/example/collisions/IntGrid.collisionobject'
+--     }
+-- }
 
 config.entities = {
     ['Saw'] = '/example/gameobjects/saw.go',
