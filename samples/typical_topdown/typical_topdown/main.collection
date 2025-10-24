@@ -12,26 +12,17 @@ collection_instances {
   collection: "/samples/typical_topdown/typical_topdown/World_Level_0.collection"
   position {
     x: 256.0
-    y: 0.0
-    z: 0.0
   }
 }
 collection_instances {
   id: "World_Level_1"
   collection: "/samples/typical_topdown/typical_topdown/World_Level_1.collection"
-  position {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-  }
 }
 collection_instances {
   id: "World_Level_2"
   collection: "/samples/typical_topdown/typical_topdown/World_Level_2.collection"
   position {
     x: 768.0
-    y: 0.0
-    z: 0.0
   }
 }
 scale_along_z: 0

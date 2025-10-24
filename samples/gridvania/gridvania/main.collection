@@ -3,18 +3,14 @@ collection_instances {
   id: "Entrance"
   collection: "/samples/gridvania/gridvania/Entrance.collection"
   position {
-    x: 0.0
     y: -256.0
-    z: 0.0
   }
 }
 collection_instances {
   id: "Cross_roads"
   collection: "/samples/gridvania/gridvania/Cross_roads.collection"
   position {
-    x: 0.0
     y: -768.0
-    z: 0.0
   }
 }
 collection_instances {
@@ -23,7 +19,6 @@ collection_instances {
   position {
     x: -1024.0
     y: -768.0
-    z: 0.0
   }
 }
 collection_instances {
@@ -32,7 +27,6 @@ collection_instances {
   position {
     x: -512.0
     y: -512.0
-    z: 0.0
   }
 }
 collection_instances {
@@ -41,7 +35,6 @@ collection_instances {
   position {
     x: 256.0
     y: -1536.0
-    z: 0.0
   }
 }
 collection_instances {
@@ -50,7 +43,6 @@ collection_instances {
   position {
     x: 256.0
     y: -2048.0
-    z: 0.0
   }
 }
 collection_instances {
@@ -59,7 +51,6 @@ collection_instances {
   position {
     x: 1536.0
     y: -1280.0
-    z: 0.0
   }
 }
 collection_instances {
@@ -68,7 +59,6 @@ collection_instances {
   position {
     x: 1024.0
     y: -256.0
-    z: 0.0
   }
 }
 collection_instances {
@@ -77,7 +67,6 @@ collection_instances {
   position {
     x: 256.0
     y: -768.0
-    z: 0.0
   }
 }
 collection_instances {
@@ -86,7 +75,6 @@ collection_instances {
   position {
     x: 512.0
     y: -1024.0
-    z: 0.0
   }
 }
 collection_instances {
@@ -95,7 +83,6 @@ collection_instances {
   position {
     x: 768.0
     y: -1024.0
-    z: 0.0
   }
 }
 collection_instances {
@@ -104,7 +91,6 @@ collection_instances {
   position {
     x: 768.0
     y: -768.0
-    z: 0.0
   }
 }
 collection_instances {
@@ -113,7 +99,6 @@ collection_instances {
   position {
     x: 1536.0
     y: -512.0
-    z: 0.0
   }
 }
 collection_instances {
@@ -122,7 +107,6 @@ collection_instances {
   position {
     x: 512.0
     y: -256.0
-    z: 0.0
   }
 }
 collection_instances {
@@ -131,7 +115,6 @@ collection_instances {
   position {
     x: 1024.0
     y: -768.0
-    z: 0.0
   }
 }
 collection_instances {
@@ -140,7 +123,6 @@ collection_instances {
   position {
     x: 1024.0
     y: -1536.0
-    z: 0.0
   }
 }
 collection_instances {
@@ -149,7 +131,6 @@ collection_instances {
   position {
     x: 1536.0
     y: -512.0
-    z: 0.0
   }
 }
 collection_instances {
@@ -158,7 +139,6 @@ collection_instances {
   position {
     x: 2816.0
     y: -256.0
-    z: 0.0
   }
 }
 collection_instances {
@@ -167,7 +147,6 @@ collection_instances {
   position {
     x: 1280.0
     y: -768.0
-    z: 0.0
   }
 }
 collection_instances {
@@ -176,7 +155,6 @@ collection_instances {
   position {
     x: 512.0
     y: -512.0
-    z: 0.0
   }
 }
 collection_instances {
@@ -185,7 +163,6 @@ collection_instances {
   position {
     x: 512.0
     y: -1536.0
-    z: 0.0
   }
 }
 scale_along_z: 0
