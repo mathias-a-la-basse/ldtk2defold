@@ -11,3 +11,5 @@ Thumbs.db
 builtins
 .zed
 .luarc.json
+
+/.defold/api
