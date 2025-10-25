@@ -1,0 +1,51 @@
+tile_set: "/samples/multiworld_platformer/tilesources/Tileset2.tilesource"
+layers {
+  id: "ForegroundTiles1"
+  z: 0.0
+  cell {
+    x: 10
+    y: 14
+    tile: 313
+  }
+  cell {
+    x: 11
+    y: 14
+    tile: 315
+  }
+  cell {
+    x: 12
+    y: 14
+    tile: 317
+  }
+  cell {
+    x: 9
+    y: 8
+    tile: 358
+  }
+  cell {
+    x: 10
+    y: 8
+    tile: 359
+  }
+  cell {
+    x: 9
+    y: 7
+    tile: 381
+  }
+  cell {
+    x: 10
+    y: 7
+    tile: 382
+  }
+  cell {
+    x: 9
+    y: 6
+    tile: 404
+  }
+  cell {
+    x: 10
+    y: 6
+    tile: 405
+  }
+}
+material: "/builtins/materials/tile_map.material"

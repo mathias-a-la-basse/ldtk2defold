@@ -1,67 +1,13 @@
+from math import floor
+from typing import List
 import LdtkJson153 as LdtkJson153
 
-from LdtkJson153 import LdtkJSON, World, Level, LayerInstance, LayerDefinition
+from LdtkJson153 import LdtkJSON, World, Level, LayerInstance, LayerDefinition, TileInstance
 import json
 import deftree 
 import sys
 from pathlib import Path
 
-def convert_to_multiworlds(model: LdtkJSON):
-  """ convert one world model to multi-world model
-     create 1 World with levels array into it
-
-  Args:
-      model (LdtkJSON): The ldtk source model
-
-  Returns:
-      LdtkJSON: the modified model in multiworld
-  """
-  
-  world = World( model.default_level_height  , model.default_level_width ,'World',model.iid,model.levels,model.world_grid_height,model.world_grid_width,model.world_layout)
-  model.worlds.append(world)
-  return model
-
-def load_external_level(ldtk_root: Path, level: Level):
-  """ load external .ldtkl file if level is stored in another file
-  Args:
-      level (_type_): _description_
-
-  Returns:
-      _type_: _description_
-  """
-  level_file = ldtk_root / level.external_rel_path
-  level_external = None
-  with open(level_file) as f:
-    level_external = Level.from_dict(json.load(f))
-  return level_external
-
-def process_worlds(ldtk_root: Path, model: LdtkJSON,  defold_root: Path, tilesources, enums, entities_def):
-  # first convert one-world project to multi-world project
-  if model.levels and len(model.levels)>0:
-    model = convert_to_multiworlds(model)
-  
-  for world_idx, world in enumerate(model.worlds):
-    for level_idx, level in enumerate(world.levels):
-      if model.external_levels:
-        level = load_external_level(ldtk_root, level)
-        model.worlds[world_idx].levels[level_idx] = level
-      process_level(world, level)
-  return model
-
-def process_level(ldtk_root: Path, world: World,level: Level, defold_root: Path, tilesources, enums, entities_def):
-  return
-
-def process_layer_intGrid(layer: LayerInstance, ldtk_root: Path, world: World,level: Level, defold_root: Path, tilesources, enums, entities_def):
-  return
-
-def process_layer_autoLayer(layer: LayerInstance, ldtk_root: Path, world: World,level: Level, defold_root: Path, tilesources, enums, entities_def):
-  return
-
-def process_layer_tileLayer(layer: LayerInstance, ldtk_root: Path, world: World,level: Level, defold_root: Path, tilesources, enums, entities_def):
-  return
-
-def process_layer_entitiesLayer(layer: LayerInstance, ldtk_root: Path, world: World,level: Level, defold_root: Path, tilesources, enums, entities_def):
-  return
 
 def get_defold_rel_path(ldtk_root: Path,  defold_root: Path, ldtk_rel_path: Path):
   """
@@ -117,10 +63,10 @@ def defold_write_tree(tree: deftree.DefTree, filepath: Path):
   tree.write(filepath)
 
 def process_tilesets(ldtk_root: Path, model: LdtkJSON, defold_root: Path):
-  tilesources_dir = defold_root/ ldtk_root.relative_to(defold_root)
-  tilesources = []
+  tilesources_dir = defold_root/ ldtk_root.relative_to(defold_root)  / 'tilesources' 
+  tilesources = {}
   for tileset_idx, tileset in enumerate(model.defs.tilesets):
-    tilesource_file = tilesources_dir / 'tilesources' / (tileset.identifier +'.tilesource')
+    tilesource_file = tilesources_dir /  (tileset.identifier +'.tilesource')
     tree = deftree.from_string(DEFOLD_TILESOURCE_TEMPLATE)
     tilesource = tree.get_root()
     if tileset.rel_path is None:
@@ -164,7 +110,8 @@ def process_tilesets(ldtk_root: Path, model: LdtkJSON, defold_root: Path):
     
     # write to disk
     defold_write_tree(tree, tilesource_file)
-    tilesources.append({"identifier": tileset.identifier, "defold_image": defold_image, "tilesource_file": tilesource_file})
+    defold_tilesource = '/' + str_path(tilesource_file.relative_to(defold_root))
+    tilesources[tileset.uid]={ "uid": tileset.uid, "identifier": tileset.identifier, "defold_image": defold_image, "tilesource_file": tilesource_file, "defold_tilesource": defold_tilesource}
     
   return tilesources  
 
@@ -174,7 +121,99 @@ def process_enums(ldtk_root, model, defold_root, tilesources):
 def process_entities_def(ldtk_root, model, defold_root, tilesources):
   return []
 
+def convert_to_multiworlds(model: LdtkJSON):
+  """ convert one world model to multi-world model
+     create 1 World with levels array into it
 
+  Args:
+      model (LdtkJSON): The ldtk source model
+
+  Returns:
+      LdtkJSON: the modified model in multiworld
+  """
+  
+  world = World( model.default_level_height  , model.default_level_width ,'World',model.iid,model.levels,model.world_grid_height,model.world_grid_width,model.world_layout)
+  model.worlds.append(world)
+  return model
+
+def load_external_level(ldtk_root: Path, level: Level):
+  """ load external .ldtkl file if level is stored in another file
+  Args:
+      level (_type_): _description_
+
+  Returns:
+      _type_: _description_
+  """
+  level_file = ldtk_root / level.external_rel_path
+  level_external = None
+  with open(level_file) as f:
+    level_external = Level.from_dict(json.load(f))
+  return level_external
+
+def process_worlds(ldtk_root: Path, model: LdtkJSON,  defold_root: Path, tilesources, enums, entities_def):
+  # first convert one-world project to multi-world project
+  if model.levels and len(model.levels)>0:
+    model = convert_to_multiworlds(model)
+  
+  for world_idx, world in enumerate(model.worlds):
+    for level_idx, level in enumerate(world.levels):
+      if model.external_levels:
+        level = load_external_level(ldtk_root, level)
+        model.worlds[world_idx].levels[level_idx] = level
+      # process level data to create tilemaps, collections and data files
+      process_level(ldtk_root, world, level, defold_root, tilesources, enums, entities_def)
+  return model
+
+def process_level(ldtk_root: Path, world: World,level: Level, defold_root: Path, tilesources, enums, entities_def):
+  for layer_idx, layer in enumerate(level.layer_instances):
+    tiles = []
+    if len(layer.auto_layer_tiles)>0:
+      tiles = layer.auto_layer_tiles # Pure AutoLayer or IntGrid with AutoLayer
+    elif len(layer.grid_tiles)>0:
+      tiles = layer.grid_tiles # TilesLayer
+    if len(tiles)>0:
+      process_layer_tiles(tiles, layer, ldtk_root, world,level, defold_root, tilesources, enums, entities_def)
+
+
+def process_layer_intGrid(layer: LayerInstance, ldtk_root: Path, world: World,level: Level, defold_root: Path, tilesources, enums, entities_def):
+   return 
+   
+def process_layer_tiles(tiles: List[TileInstance], layer: LayerInstance, ldtk_root: Path, world: World,level: Level, defold_root: Path, tilesources, enums, entities_def):
+  tilemaps_dir = defold_root/ ldtk_root.relative_to(defold_root) / 'tilemaps'
+  tilesource = tilesources[layer.tileset_def_uid]
+  # create Defold tilemap
+  tree = deftree.DefTree()
+  tilemap = tree.get_root()
+  tilemap.add_attribute("tile_set", tilesource['defold_tilesource'] )
+  # build first layer
+  ## TODO: build other layers with z+0.0001 if tiles are stacked at same place
+  ##     could be many layers -> build set to check if grid cell is alread used 
+  ##     -> add cell info to layers array
+  deflayer = tilemap.add_element("layers")
+  deflayer.add_attribute("id", layer.identifier + "1")
+  deflayer.add_attribute("z", 0.0)
+  # build cells:
+  total_height = layer.c_hei * layer.grid_size
+  for tile in tiles:
+    cell = deflayer.add_element('cell')
+    cell.add_attribute('x', floor(tile.px[0] / layer.grid_size))
+    cell.add_attribute('y', floor( (total_height - tile.px[1]) / layer.grid_size ) )
+    cell.add_attribute('tile', tile.t)
+    if tile.f == 1 or tile.f == 3:
+      cell.add_attribute('h_flip', 1)
+    if tile.f == 2 or tile.f == 3:
+      cell.add_attribute('v_flip', 1)
+  # add material.
+  # TODO: HANDLE material from configuration
+  tilemap.add_attribute('material','/builtins/materials/tile_map.material')
+  
+  # Write tilemap file
+  tilemap_file = tilemaps_dir / world.identifier / level.identifier / (layer.identifier +'.tilemap')
+  defold_write_tree(tree, tilemap_file)
+  return
+
+def process_layer_entitiesLayer(layer: LayerInstance, ldtk_root: Path, world: World,level: Level, defold_root: Path, tilesources, enums, entities_def):
+  return
 
 def ldtk_to_defold(source_file,defold_root,config_file=None):
   model: LdtkJSON | None = None
