@@ -25,7 +25,7 @@ convex_hulls {
 convex_hulls {
   index: 18
   count: 6
-  collision_group: ""
+  collision_group: "walls"
 }
 convex_hulls {
   index: 24
@@ -405,7 +405,7 @@ convex_hulls {
 convex_hulls {
   index: 358
   count: 4
-  collision_group: ""
+  collision_group: "walls"
 }
 collision_groups: "slope"
 collision_groups: "walls"

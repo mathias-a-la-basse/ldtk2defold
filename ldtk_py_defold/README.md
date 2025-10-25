@@ -9,8 +9,8 @@ A python tool to convert LDTK files into Defold ressources.
     * file:   `{config.fn_tileset_path(identifier, tags)}/{model.tilesets.identifier}.tilesource`
     * image={model.tilesets.relPath} -> relative to defold project
     * size W = {model.tilesets.pxWid}, H = {model.tilesets.pxHei}
-    * tile width = {model.tilesets.tileGridSize}
-    * tile height = {model.tilesets.tileGridSize}
+    * tile width = {model.tilesets.tile_grid_size}
+    * tile height = {model.tilesets.tile_grid_size}
     * tile margin = {model.tilesets.padding}
     * tile spacing = {model.tilesets.spacing}
     * !! extrude borders = {config.tilesets[identifier].extrude_borders} !!
@@ -20,10 +20,11 @@ A python tool to convert LDTK files into Defold ressources.
       * or nil if {config.tilesets[identifier].no_collision}
       * default idem defold.image
     * !! Sprite trim mode {config.tilesets[identifier].inner_padding} !!
-    * For each enumTags value (not custom) add a collision group and mark tiles
-      * collision_group = {model.tilesets.enumTags.enumValueId}
-      * create a convex hull data for each cell in {model.tilesets.enumTags.tileIds}
-      * how to calculate "index" and "count"
+    * For each enumTags value (not custom data) add a collision group and mark tiles
+      * for each tile, create a convex hull data. If in {model.tilesets.enumTags.tileIds} -> set collision_group = {model.tilesets.enumTags.enumValueId}, else "" (no group)
+      * how to calculate "index" and "count":
+        * index start at 0, then it is index += count over each tile.
+        * count is the number of edges of convex hull -> set 4 everywhere.
     
   * 1 tileset lua table  with data:
     * identifier
@@ -126,3 +127,46 @@ collision_groups: "slope"
 collision_groups: "walls"
 extrude_borders: 2
 ```
+
+## Enums definitions
+
+* For each enums
+TODO
+
+## Entities definitions
+
+* 1 lua file with entities definitions
+
+## World
+
+* 1 collection per world containing
+  * 1 collection per level
+
+## World - Level
+
+* 1 collection per level containing
+  * 1 collection per layer
+
+## World - Level - Layer
+
+* 1 collection per layer with
+  * 1 tilemap
+  * 1 collisionobject -> set tilesource as object shapes
+  * 1 script with iid, opacity
+
+### World - Level - Layer - IntGrid / Entities
+
+* 1 lua file per level with intGrid and entities data + entities definitions if used + enums def if used
+* generate intGrid tilesources with simple colored tiles -> png+tilesource + tilemap
+
+### World - Level - Layer - TileLayer
+
+* idem basic layer
+
+### World - Level - Layer - AutoLayer
+
+* idem basic layer
+
+### World - Level - Layer - Entities
+
+* idem basic layer
