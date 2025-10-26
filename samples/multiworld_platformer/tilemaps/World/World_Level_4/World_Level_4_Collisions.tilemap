@@ -1,0 +1,431 @@
+tile_set: "/samples/multiworld_platformer/tilesources/SunnyLand_by_Ansimuz.tilesource"
+layers {
+  id: "Collisions1"
+  z: 0.0
+  cell {
+    x: 0
+    y: 3
+    tile: 48
+  }
+  cell {
+    x: 1
+    y: 3
+    tile: 48
+  }
+  cell {
+    x: 2
+    y: 3
+    tile: 48
+  }
+  cell {
+    x: 8
+    y: 3
+    tile: 48
+  }
+  cell {
+    x: 15
+    y: 3
+    tile: 48
+  }
+  cell {
+    x: 0
+    y: 2
+    tile: 48
+  }
+  cell {
+    x: 13
+    y: 3
+    tile: 144
+  }
+  cell {
+    x: 14
+    y: 3
+    tile: 144
+  }
+  cell {
+    x: 0
+    y: 1
+    tile: 46
+    h_flip: 1
+  }
+  cell {
+    x: 3
+    y: 3
+    tile: 94
+  }
+  cell {
+    x: 9
+    y: 3
+    tile: 94
+  }
+  cell {
+    x: 11
+    y: 3
+    tile: 94
+  }
+  cell {
+    x: 12
+    y: 3
+    tile: 94
+  }
+  cell {
+    x: 1
+    y: 2
+    tile: 94
+  }
+  cell {
+    x: 14
+    y: 2
+    tile: 94
+  }
+  cell {
+    x: 15
+    y: 2
+    tile: 94
+  }
+  cell {
+    x: 5
+    y: 3
+    tile: 92
+    h_flip: 1
+  }
+  cell {
+    x: 7
+    y: 3
+    tile: 92
+  }
+  cell {
+    x: 2
+    y: 2
+    tile: 92
+    h_flip: 1
+  }
+  cell {
+    x: 8
+    y: 2
+    tile: 92
+  }
+  cell {
+    x: 13
+    y: 2
+    tile: 92
+  }
+  cell {
+    x: 3
+    y: 2
+    tile: 233
+  }
+  cell {
+    x: 7
+    y: 2
+    tile: 233
+    h_flip: 1
+  }
+  cell {
+    x: 9
+    y: 2
+    tile: 233
+  }
+  cell {
+    x: 12
+    y: 2
+    tile: 211
+    h_flip: 1
+  }
+  cell {
+    x: 1
+    y: 1
+    tile: 211
+  }
+  cell {
+    x: 0
+    y: 4
+    tile: 2
+  }
+  cell {
+    x: 1
+    y: 4
+    tile: 2
+  }
+  cell {
+    x: 2
+    y: 4
+    tile: 2
+  }
+  cell {
+    x: 3
+    y: 4
+    tile: 2
+  }
+  cell {
+    x: 4
+    y: 4
+    tile: 2
+  }
+  cell {
+    x: 5
+    y: 4
+    tile: 2
+  }
+  cell {
+    x: 7
+    y: 4
+    tile: 2
+  }
+  cell {
+    x: 8
+    y: 4
+    tile: 2
+  }
+  cell {
+    x: 9
+    y: 4
+    tile: 2
+  }
+  cell {
+    x: 10
+    y: 4
+    tile: 2
+  }
+  cell {
+    x: 11
+    y: 4
+    tile: 2
+  }
+  cell {
+    x: 12
+    y: 4
+    tile: 2
+  }
+  cell {
+    x: 13
+    y: 4
+    tile: 2
+  }
+  cell {
+    x: 14
+    y: 4
+    tile: 2
+  }
+  cell {
+    x: 15
+    y: 4
+    tile: 2
+  }
+  cell {
+    x: 0
+    y: 5
+    tile: 163
+  }
+  cell {
+    x: 1
+    y: 5
+    tile: 164
+  }
+  cell {
+    x: 2
+    y: 5
+    tile: 164
+  }
+  cell {
+    x: 3
+    y: 5
+    tile: 162
+  }
+  cell {
+    x: 4
+    y: 5
+    tile: 164
+  }
+  cell {
+    x: 5
+    y: 5
+    tile: 163
+  }
+  cell {
+    x: 7
+    y: 5
+    tile: 164
+  }
+  cell {
+    x: 8
+    y: 5
+    tile: 163
+  }
+  cell {
+    x: 9
+    y: 5
+    tile: 163
+  }
+  cell {
+    x: 10
+    y: 5
+    tile: 163
+  }
+  cell {
+    x: 11
+    y: 5
+    tile: 163
+  }
+  cell {
+    x: 12
+    y: 5
+    tile: 163
+  }
+  cell {
+    x: 13
+    y: 5
+    tile: 162
+  }
+  cell {
+    x: 14
+    y: 5
+    tile: 162
+  }
+  cell {
+    x: 15
+    y: 5
+    tile: 163
+  }
+  cell {
+    x: 4
+    y: 3
+    tile: 284
+  }
+  cell {
+    x: 4
+    y: 2
+    tile: 307
+  }
+  cell {
+    x: 4
+    y: 1
+    tile: 330
+  }
+  cell {
+    x: 10
+    y: 3
+    tile: 282
+  }
+  cell {
+    x: 10
+    y: 2
+    tile: 305
+  }
+  cell {
+    x: 6
+    y: 4
+    tile: 213
+  }
+  cell {
+    x: 6
+    y: 3
+    tile: 213
+  }
+  cell {
+    x: 6
+    y: 2
+    tile: 213
+  }
+  cell {
+    x: 6
+    y: 1
+    tile: 213
+  }
+}
+layers {
+  id: "Collisions2"
+  z: 0.001
+  cell {
+    x: 5
+    y: 3
+    tile: 326
+    h_flip: 1
+    v_flip: 1
+  }
+  cell {
+    x: 7
+    y: 3
+    tile: 326
+    v_flip: 1
+  }
+  cell {
+    x: 2
+    y: 2
+    tile: 326
+    h_flip: 1
+    v_flip: 1
+  }
+  cell {
+    x: 8
+    y: 2
+    tile: 326
+    v_flip: 1
+  }
+  cell {
+    x: 13
+    y: 2
+    tile: 326
+    v_flip: 1
+  }
+  cell {
+    x: 2
+    y: 3
+    tile: 211
+    h_flip: 1
+    v_flip: 1
+  }
+  cell {
+    x: 8
+    y: 3
+    tile: 211
+    v_flip: 1
+  }
+  cell {
+    x: 13
+    y: 3
+    tile: 211
+    v_flip: 1
+  }
+  cell {
+    x: 0
+    y: 2
+    tile: 211
+    h_flip: 1
+    v_flip: 1
+  }
+  cell {
+    x: 2
+    y: 5
+    tile: 138
+  }
+  cell {
+    x: 3
+    y: 5
+    tile: 138
+  }
+  cell {
+    x: 10
+    y: 5
+    tile: 138
+  }
+}
+layers {
+  id: "Collisions3"
+  z: 0.002
+  cell {
+    x: 8
+    y: 2
+    tile: 326
+    h_flip: 1
+    v_flip: 1
+  }
+  cell {
+    x: 8
+    y: 3
+    tile: 211
+    h_flip: 1
+    v_flip: 1
+  }
+}
+material: "/builtins/materials/tile_map.material"

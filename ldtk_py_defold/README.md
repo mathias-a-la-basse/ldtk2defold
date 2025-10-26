@@ -2,6 +2,11 @@
 
 A python tool to convert LDTK files into Defold ressources.
 
+### Restrictions
+
+* in LDTK Auto Rules, if using a "Tile rectangle", the origin position should not be in the middle. LDTK permit to show tiles that have a shifted position with respect to the tile grid, but defold dont allow this.
+  * If your props needs to be "in the middle of the grid", design the tileset directly like that.
+
 ### LDTK Tilesets
 
 * each ldtk tileset {model.tilesets} become

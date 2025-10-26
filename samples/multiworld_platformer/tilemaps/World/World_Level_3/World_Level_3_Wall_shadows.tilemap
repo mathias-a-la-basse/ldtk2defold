@@ -1,0 +1,319 @@
+tile_set: "/samples/multiworld_platformer/tilesources/SunnyLand_by_Ansimuz.tilesource"
+layers {
+  id: "Wall_shadows1"
+  z: 0.0
+  cell {
+    x: 7
+    y: 18
+    tile: 182
+  }
+  cell {
+    x: 8
+    y: 18
+    tile: 182
+  }
+  cell {
+    x: 9
+    y: 18
+    tile: 182
+  }
+  cell {
+    x: 13
+    y: 18
+    tile: 182
+  }
+  cell {
+    x: 7
+    y: 17
+    tile: 182
+    v_flip: 1
+  }
+  cell {
+    x: 8
+    y: 16
+    tile: 182
+    v_flip: 1
+  }
+  cell {
+    x: 9
+    y: 16
+    tile: 182
+    v_flip: 1
+  }
+  cell {
+    x: 11
+    y: 16
+    tile: 182
+    v_flip: 1
+  }
+  cell {
+    x: 13
+    y: 16
+    tile: 182
+    v_flip: 1
+  }
+  cell {
+    x: 3
+    y: 15
+    tile: 182
+  }
+  cell {
+    x: 4
+    y: 15
+    tile: 182
+  }
+  cell {
+    x: 5
+    y: 15
+    tile: 182
+  }
+  cell {
+    x: 2
+    y: 14
+    tile: 182
+  }
+  cell {
+    x: 1
+    y: 13
+    tile: 182
+  }
+  cell {
+    x: 6
+    y: 13
+    tile: 182
+  }
+  cell {
+    x: 8
+    y: 13
+    tile: 182
+  }
+  cell {
+    x: 9
+    y: 13
+    tile: 182
+  }
+  cell {
+    x: 10
+    y: 13
+    tile: 182
+    v_flip: 1
+  }
+  cell {
+    x: 12
+    y: 13
+    tile: 182
+    v_flip: 1
+  }
+  cell {
+    x: 0
+    y: 12
+    tile: 182
+  }
+  cell {
+    x: 6
+    y: 12
+    tile: 182
+    v_flip: 1
+  }
+  cell {
+    x: 7
+    y: 12
+    tile: 182
+  }
+  cell {
+    x: 8
+    y: 12
+    tile: 182
+    v_flip: 1
+  }
+  cell {
+    x: 9
+    y: 12
+    tile: 182
+    v_flip: 1
+  }
+  cell {
+    x: 0
+    y: 11
+    tile: 182
+    v_flip: 1
+  }
+  cell {
+    x: 1
+    y: 11
+    tile: 182
+    v_flip: 1
+  }
+  cell {
+    x: 2
+    y: 11
+    tile: 182
+    v_flip: 1
+  }
+  cell {
+    x: 3
+    y: 11
+    tile: 182
+    v_flip: 1
+  }
+  cell {
+    x: 4
+    y: 11
+    tile: 182
+    v_flip: 1
+  }
+  cell {
+    x: 5
+    y: 11
+    tile: 182
+    v_flip: 1
+  }
+  cell {
+    x: 10
+    y: 19
+    tile: 204
+  }
+  cell {
+    x: 12
+    y: 19
+    tile: 204
+    h_flip: 1
+  }
+  cell {
+    x: 13
+    y: 17
+    tile: 204
+    h_flip: 1
+  }
+  cell {
+    x: 5
+    y: 14
+    tile: 204
+    h_flip: 1
+  }
+  cell {
+    x: 10
+    y: 14
+    tile: 204
+  }
+  cell {
+    x: 12
+    y: 14
+    tile: 204
+  }
+}
+layers {
+  id: "Wall_shadows2"
+  z: 0.001
+  cell {
+    x: 7
+    y: 12
+    tile: 182
+    v_flip: 1
+  }
+  cell {
+    x: 7
+    y: 18
+    tile: 204
+  }
+  cell {
+    x: 13
+    y: 18
+    tile: 204
+    h_flip: 1
+  }
+  cell {
+    x: 7
+    y: 17
+    tile: 204
+  }
+  cell {
+    x: 8
+    y: 16
+    tile: 204
+  }
+  cell {
+    x: 13
+    y: 16
+    tile: 204
+    h_flip: 1
+  }
+  cell {
+    x: 3
+    y: 15
+    tile: 204
+  }
+  cell {
+    x: 5
+    y: 15
+    tile: 204
+    h_flip: 1
+  }
+  cell {
+    x: 2
+    y: 14
+    tile: 204
+  }
+  cell {
+    x: 10
+    y: 14
+    tile: 204
+    h_flip: 1
+  }
+  cell {
+    x: 12
+    y: 14
+    tile: 204
+    h_flip: 1
+  }
+  cell {
+    x: 1
+    y: 13
+    tile: 204
+  }
+  cell {
+    x: 6
+    y: 13
+    tile: 204
+    h_flip: 1
+  }
+  cell {
+    x: 8
+    y: 13
+    tile: 204
+  }
+  cell {
+    x: 10
+    y: 13
+    tile: 204
+    h_flip: 1
+  }
+  cell {
+    x: 12
+    y: 13
+    tile: 204
+  }
+  cell {
+    x: 9
+    y: 12
+    tile: 204
+    h_flip: 1
+  }
+  cell {
+    x: 5
+    y: 11
+    tile: 204
+    h_flip: 1
+  }
+}
+layers {
+  id: "Wall_shadows3"
+  z: 0.002
+  cell {
+    x: 12
+    y: 13
+    tile: 204
+    h_flip: 1
+  }
+}
+material: "/builtins/materials/tile_map.material"

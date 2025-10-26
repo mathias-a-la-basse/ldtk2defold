@@ -13,3 +13,4 @@ builtins
 .luarc.json
 
 /.defold/api
+*.log
