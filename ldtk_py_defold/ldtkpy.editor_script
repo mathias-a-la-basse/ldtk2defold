@@ -1,0 +1,101 @@
+-- local parser = require "ldtk2defold.parser"
+
+local M = {}
+
+local function ends_with(path, ext)
+    local _, _, extension = path:match("(.-)([^\\/]-%.?([^%.\\/]*))$")
+    return extension == ext
+end
+
+local function get_resource_path(path)
+    local main, filename, _ = path:match("^(.-)([^\\/]-)(%.[^\\/%.]-)%.?$")
+    return main, filename
+end
+
+-- get an absolute filesystem path from a path relative to defold project
+local function get_absolute_path(local_path)
+    if string.sub(local_path, 1,1)=='/' then 
+        local_path = string.sub(local_path,2)
+    end
+    return editor.external_file_attributes(local_path).path
+end
+
+local function get_project_root()
+    return editor.external_file_attributes('.').path
+end
+
+function M.get_commands()
+    return {
+        {
+            label = "LDTK PY - Generate Tilemaps",
+            locations = { "Edit", "Assets" },
+            query = {
+                selection = { type = "resource", cardinality = "one" }
+            },
+            active = function(opts)
+                local path = editor.get(opts.selection, "path")
+                return ends_with(path, "ldtk") or ends_with(path, "json")
+            end,
+            run = function(opts)
+                local ldtk_file = editor.get(opts.selection, "path")
+                local ldtk_path = get_absolute_path(ldtk_file)
+                local project_root = get_project_root()
+                                
+                local config_file = editor.prefs.get("ldtkpy.config_file")
+                            -- TODO: allow config to python command
+                local python_bin = 'python' 
+                local python_script = project_root .. '/ldtk_py_defold/ldtk_py_defold.py'
+                pprint('Run python:')
+                pprint(python_script, ldtk_path, project_root)
+                editor.execute(python_bin, python_script, ldtk_path, project_root, {})
+                pprint('conversion OK')
+
+                return {}
+            end
+        },
+        -- {
+        --     label = 'Clear Tilemaps',
+        --     locations = { 'Edit', 'Assets' },
+        --     query = {
+        --         selection = { type = 'resource', cardinality = 'one' }
+        --     },
+        --     active = function(opts)
+        --         local path = editor.get(opts.selection, 'path')
+        --         return ends_with(path, 'ldtk') or ends_with(path, 'json')
+        --     end,
+        --     run = function(opts)
+        --         local root, name, _ = get_resource_path(editor.get(opts.selection, 'path'))
+        --         local config = editor.prefs.get('ldtk.config_file')
+        --         editor.delete_directory(root .. name .. '/')
+        --         
+        --         print('delete')
+        --         return {}
+        --     end
+        -- },
+        {
+            label = 'LDTK PY - Change Config File',
+            locations = { 'View' },
+            run = function(opts)
+                local file = editor.prefs.get('ldtkpy.config_file')
+                local result = editor.ui.show_resource_dialog({
+                    extensions = { 'lua' },
+                    title = 'Select Config File',
+                })
+
+                if result then
+                    editor.prefs.set('ldtkpy.config_file', result)
+                else
+                    print('No config file selected. Reverting to ' .. file .. " ...")
+                end
+            end
+        }
+    }    
+end
+
+function M.get_prefs_schema()
+    return {
+        ['ldtkpy.config_file'] = editor.prefs.schema.string({ default = '/config.lua' })
+    }
+end
+
+return M
