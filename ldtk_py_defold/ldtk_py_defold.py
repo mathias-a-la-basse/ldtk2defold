@@ -12,7 +12,7 @@ from pathlib import Path
 logger = logging.getLogger('ldtk_py_defold')
 
 
-def get_defold_rel_path(ldtk_root: Path,  defold_root: Path, ldtk_rel_path: Path):
+def path_ldtk_defold_relative(ldtk_root: Path,  defold_root: Path, ldtk_rel_path: Path) -> Path:
   """
   Given the root ldtk path, the defold target project and a relative ldtk path
   return the relative path to use in defold
@@ -20,8 +20,15 @@ def get_defold_rel_path(ldtk_root: Path,  defold_root: Path, ldtk_rel_path: Path
   thepath = (ldtk_root / ldtk_rel_path).resolve().absolute().relative_to(defold_root)
   return '/' / thepath
 
-def str_path(path: Path):
+def str_path(path: Path) -> str:
   return str(path).replace('\\','/')
+
+def path_defold_relative(thepath: Path, defold_root: Path) -> str:
+  """
+  Given a full path to a file in defold project, return a ressources relative path usable in defold files
+  """
+  thepath = (thepath).resolve().absolute().relative_to(defold_root)
+  return str_path('/' /thepath)
 
 DEFOLD_TILESOURCE_TEMPLATE = """image: ""
 tile_width: 32
@@ -49,6 +56,17 @@ def defold_element(el_name, *args):
       el.add_attribute(a_name,a_value)
   return el
 
+def defold_element_str_escape(element: deftree.Element):
+  """ Return an escape string of the element data, to be embeded in an attribute of defold files
+   This is necessary for embeded objects in collections, and 
+  """
+  data = deftree.to_string(element)
+  # escape double quotes:
+  data = data.replace('"','\\"')
+  # convert to multiline array
+  data = data.replace('\n','\\n\n')
+  return data
+
 def defold_remove_element(doc: deftree.Element,el_name):
   e = doc.get_element(el_name)
   e_idx = doc.index(e)
@@ -62,8 +80,10 @@ def defold_remove_attribute(doc: deftree.Element,a_name):
   return e_idx
 
 def defold_write_tree(tree: deftree.DefTree, filepath: Path):
+  if filepath is None:
+    raise Exception('filepath is mandatory')
   filepath.parent.mkdir(exist_ok=True, parents=True)
-  tree.write(filepath)
+  tree.write(str(filepath))
 
 def process_tilesets(ldtk_root: Path, model: LdtkJSON, defold_root: Path):
   tilesources_dir = defold_root/ ldtk_root.relative_to(defold_root)  / 'tilesources' 
@@ -76,7 +96,7 @@ def process_tilesets(ldtk_root: Path, model: LdtkJSON, defold_root: Path):
     if tileset.rel_path is None:
       # TODO: HANDLE EMBEDED TILESET --> NO IMAGE!
       continue
-    defold_image = str_path(get_defold_rel_path(ldtk_root, defold_root, Path(tileset.rel_path) ))
+    defold_image = str_path(path_ldtk_defold_relative(ldtk_root, defold_root, Path(tileset.rel_path) ))
     tilesource.set_attribute("image", defold_image)
     tilesource.set_attribute("tile_width", tileset.tile_grid_size)
     tilesource.set_attribute("tile_height", tileset.tile_grid_size)
@@ -141,7 +161,7 @@ def convert_to_multiworlds(model: LdtkJSON):
   logger.info('multi-world model ok')
   return model
 
-def load_external_level(ldtk_root: Path, level: Level):
+def load_external_level(ldtk_root: Path, level: Level) -> Level:
   """ load external .ldtkl file if level is stored in another file
   Args:
       level (_type_): _description_
@@ -176,20 +196,60 @@ def process_worlds(ldtk_root: Path, model: LdtkJSON,  defold_root: Path, tilesou
   return model
 
 def process_level(ldtk_root: Path, world: World,level: Level, defold_root: Path, tilesources, enums, entities_def):
-  for layer_idx, layer in enumerate(level.layer_instances):
-    tiles = []
-    if len(layer.auto_layer_tiles)>0:
-      tiles = layer.auto_layer_tiles # Pure AutoLayer or IntGrid with AutoLayer
-    elif len(layer.grid_tiles)>0:
-      tiles = layer.grid_tiles # TilesLayer
-    if len(tiles)>0:
-      process_layer_tiles(tiles, layer, ldtk_root, world,level, defold_root, tilesources, enums, entities_def)
+  layers = []
+  layers_tilemap = []
+  layers_intgrid = []
+  layers_entities = []
+  # FIRST WE PROCESS ALL LAYERS:
+  # 1. we write all tilemaps if there is a tile in the layer -> added to layers_tilemap
+  # 2. we gather all entities data in a file and add layer -> added to layers_entities 
+  # THEN WE BUILD A LEVEL COLLECTION WITH ALL LAYERS AND GAME OBJECTS
+  if level.layer_instances is not None and len(level.layer_instances)>0:
+    for layer_idx, layer in enumerate(level.layer_instances):
+      tiles = []
+      if len(layer.auto_layer_tiles)>0:
+        tiles = layer.auto_layer_tiles # Pure AutoLayer or IntGrid with AutoLayer
+      elif len(layer.grid_tiles)>0:
+        tiles = layer.grid_tiles # TilesLayer
+      if len(tiles)>0:
+        def_layer = process_layer_tiles(layer_idx,tiles, layer, ldtk_root, world,level, defold_root, tilesources, enums, entities_def)
+        layers_tilemap.append(def_layer)
+      # TODO: HANDLE ENTITIES LAYERS
+      # TODO: HANDLE INTGRID VALUES FOR INTGRID LAYERS
+  # --------------------------------
+  # NOW BUILD LEVEL COLLECTION
+  ### defold collection data
+  tree = deftree.DefTree()
+  lev = tree.get_root()
+  lev.add_attribute('name', level.identifier)
+  lev.add_attribute('scale_along_z',0)
+  for def_layer in layers_tilemap:
+    layer_z = def_layer["index"] * -0.01 # TODO: CONFIGURE Z DELTAS FOR LAYERS
+    # TODO: add a gameobject for layer, with layer_z position for z
+    # in gameobject, 
+    #  * add layer_script (iid, level_iid, world_iid, opacity) 
+    #  * add tilemap component
+    #  * add collisionobject refering to tilemap component (IF config? if ldtk custom level field??)
+    go = lev.add_element('embedded_instances')
+    go.add_attribute('id','Layer_'+ def_layer['identifier'])
+    subtree = deftree.DefTree()
+    go_data = subtree.get_root()
+    go_data.append(defold_element('components', 'id',def_layer['identifier'], 'component', def_layer['defold_tilemap'] ))
+    #go.add_attribute('data', defold_element_str_escape(go_data) )
+    go.add_attribute('data', deftree._DefParser.serialize(go_data))
+    go.append(defold_element('position','z', layer_z))
+  # Write level collection file
+  levels_dir = defold_root/ ldtk_root.relative_to(defold_root) / 'tilemaps'
+  level_collection_file = levels_dir / world.identifier / (level.identifier +'.collection')
+  defold_write_tree(tree, level_collection_file)
+  logger.info('Level written in '+str(level_collection_file))
+  
 
 
 def process_layer_intGrid(layer: LayerInstance, ldtk_root: Path, world: World,level: Level, defold_root: Path, tilesources, enums, entities_def):
    return 
    
-def process_layer_tiles(tiles: List[TileInstance], layer: LayerInstance, ldtk_root: Path, world: World,level: Level, defold_root: Path, tilesources, enums, entities_def):
+def process_layer_tiles(layer_idx: int, tiles: List[TileInstance], layer: LayerInstance, ldtk_root: Path, world: World,level: Level, defold_root: Path, tilesources, enums, entities_def):
   tilemaps_dir = defold_root/ ldtk_root.relative_to(defold_root) / 'tilemaps'
   tilesource = tilesources[layer.tileset_def_uid]
   tilemap_file = tilemaps_dir / world.identifier / level.identifier / (level.identifier+'_'+layer.identifier +'.tilemap')
@@ -211,7 +271,7 @@ def process_layer_tiles(tiles: List[TileInstance], layer: LayerInstance, ldtk_ro
     # we use a set to check if the tile px has already been used in the current layer, if so, the tile
     # will go to the next_tiles and added to the next layer.
     tiles_set = set()
-     # will store the tiles for next iteration
+    # will store the tiles for next iteration
     next_tiles = []
     for tile in tiles:
       # first check if celle is already added -> if so continue and keep tile for next layer
@@ -242,7 +302,15 @@ def process_layer_tiles(tiles: List[TileInstance], layer: LayerInstance, ldtk_ro
     # Write tilemap file
   defold_write_tree(tree, tilemap_file)
   logger.info('tilemap written in '+str(tilemap_file))
-  return
+  
+  def_layer={ "iid": layer.iid, 
+             "identifier": layer.identifier,
+             "defold_tilemap": path_defold_relative(tilemap_file, defold_root),
+             "tilemap_file": tilemap_file,
+             "index": layer_idx
+             }
+
+  return def_layer
 
 def process_layer_entitiesLayer(layer: LayerInstance, ldtk_root: Path, world: World,level: Level, defold_root: Path, tilesources, enums, entities_def):
   return
@@ -255,7 +323,7 @@ def ldtk_to_defold(source_file,defold_root,config_file=None):
   
   logging.basicConfig(filename= str(ldtk_root / 'ldtk_py_defold.log'), level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                       filemode='w')
-  logger.info('** START LDTK 2 DEFOLD CONVERTER')
+  logger.info('** START LDTK PY DEFOLD CONVERTER')
   logger.info('ldtk file is: ' + str(source_file))
   logger.info('defold root is: ' + str(defold_root))
   
@@ -273,7 +341,7 @@ def ldtk_to_defold(source_file,defold_root,config_file=None):
   entities_def = process_entities_def(ldtk_root, model, defold_root, tilesources)
   process_worlds(ldtk_root, model, defold_root, tilesources, enums, entities_def)
       
-  logger.info('** FINISHED LDTK 2 DEFOLD CONVERTER')
+  logger.info('** FINISHED LDTK PY DEFOLD CONVERTER')
 
 def main():
     args = sys.argv[1:]
