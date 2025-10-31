@@ -184,14 +184,30 @@ def process_worlds(ldtk_root: Path, model: LdtkJSON,  defold_root: Path, tilesou
   
   for world_idx, world in enumerate(model.worlds):
     logger.info('Start of world processing for world '+ world.identifier)
+    # start building world.collection file:
+    world_tree = deftree.DefTree()
+    defworld = world_tree.get_root()
+    defworld.add_attribute('name', world.identifier)
+    ## TODO: HANDLE HEIGHT INVERSION + WORLD LAYOUT TYPE (HORIZONTAL/VERTICAL LAYOUT) FOR LEVEL'S WORLD-POSITION
+      ## WE NEED TO CALCULATE THE MAX HEIGHT OF LEVELS --> WE NEED TO ITERATE OVER THE LEVELS AFTERWARDS!
     for level_idx, level in enumerate(world.levels):
       logger.info('Start of level  processing for level '+ level.identifier)
       if model.external_levels:
         level = load_external_level(ldtk_root, level)
         model.worlds[world_idx].levels[level_idx] = level
       # process level data to create tilemaps, collections and data files
-      process_level(ldtk_root, world, level, defold_root, tilesources, enums, entities_def)
+      deflevel = process_level(ldtk_root, world, level, defold_root, tilesources, enums, entities_def)
       logger.info('Level processing ok for level '+ level.identifier)
+      world_pos = defold_element('position','x', level.world_x,'y',  level.world_y)
+      defworld.append(defold_element('collection_instances',
+                                     'id', deflevel['identifier'] ,
+                                     'collection', deflevel['defold_level_file'],
+                                     None, world_pos
+                                     ))
+    # Write World collection file
+    worlds_dir = defold_root/ ldtk_root.relative_to(defold_root) / 'tilemaps'
+    world_collection_file = worlds_dir / world.identifier / (world.identifier +'.collection')
+    defold_write_tree(world_tree, world_collection_file)
     logger.info('world processing ok for world '+ world.identifier)
   return model
 
@@ -204,7 +220,9 @@ def process_level(ldtk_root: Path, world: World,level: Level, defold_root: Path,
   # 1. we write all tilemaps if there is a tile in the layer -> added to layers_tilemap
   # 2. we gather all entities data in a file and add layer -> added to layers_entities 
   # THEN WE BUILD A LEVEL COLLECTION WITH ALL LAYERS AND GAME OBJECTS
+  nb_layers = 0
   if level.layer_instances is not None and len(level.layer_instances)>0:
+    nb_layers = len(level.layer_instances)
     for layer_idx, layer in enumerate(level.layer_instances):
       tiles = []
       if len(layer.auto_layer_tiles)>0:
@@ -223,8 +241,9 @@ def process_level(ldtk_root: Path, world: World,level: Level, defold_root: Path,
   lev = tree.get_root()
   lev.add_attribute('name', level.identifier)
   lev.add_attribute('scale_along_z',0)
+  z_delta_layer=0.01 # TODO: CONFIGURE Z DELTAS FOR LAYERS
   for def_layer in layers_tilemap:
-    layer_z = def_layer["index"] * -0.01 # TODO: CONFIGURE Z DELTAS FOR LAYERS
+    layer_z = (nb_layers-def_layer["index"]) * z_delta_layer 
     # TODO: add a gameobject for layer, with layer_z position for z
     # in gameobject, 
     #  * add layer_script (iid, level_iid, world_iid, opacity) 
@@ -232,17 +251,19 @@ def process_level(ldtk_root: Path, world: World,level: Level, defold_root: Path,
     #  * add collisionobject refering to tilemap component (IF config? if ldtk custom level field??)
     go = lev.add_element('embedded_instances')
     go.add_attribute('id','Layer_'+ def_layer['identifier'])
-    subtree = deftree.DefTree()
-    go_data = subtree.get_root()
-    go_data.append(defold_element('components', 'id',def_layer['identifier'], 'component', def_layer['defold_tilemap'] ))
-    #go.add_attribute('data', defold_element_str_escape(go_data) )
-    go.add_attribute('data', deftree._DefParser.serialize(go_data))
+    data = go.add_element('data')
+    data.append(defold_element('components', 'id',def_layer['identifier'], 'component', def_layer['defold_tilemap'] ))
     go.append(defold_element('position','z', layer_z))
   # Write level collection file
   levels_dir = defold_root/ ldtk_root.relative_to(defold_root) / 'tilemaps'
   level_collection_file = levels_dir / world.identifier / (level.identifier +'.collection')
   defold_write_tree(tree, level_collection_file)
   logger.info('Level written in '+str(level_collection_file))
+  return {"iid": level.iid, 
+          "identifier": level.identifier, 
+          "level_collection_file": level_collection_file, 
+          "defold_level_file": path_defold_relative(level_collection_file, defold_root)
+          }
   
 
 
