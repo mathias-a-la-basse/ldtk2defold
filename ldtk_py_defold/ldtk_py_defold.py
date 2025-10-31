@@ -91,6 +91,7 @@ def process_tilesets(ldtk_root: Path, model: LdtkJSON, defold_root: Path):
   for tileset_idx, tileset in enumerate(model.defs.tilesets):
     tilesource_file = tilesources_dir /  (tileset.identifier +'.tilesource')
     logger.info('create tilesource :' + str(tilesource_file))
+    # TODO: dont use string template, just build the tree
     tree = deftree.from_string(DEFOLD_TILESOURCE_TEMPLATE)
     tilesource = tree.get_root()
     if tileset.rel_path is None:
@@ -233,7 +234,11 @@ def process_level(ldtk_root: Path, world: World,level: Level, defold_root: Path,
         def_layer = process_layer_tiles(layer_idx,tiles, layer, ldtk_root, world,level, defold_root, tilesources, enums, entities_def)
         layers_tilemap.append(def_layer)
       # TODO: HANDLE ENTITIES LAYERS
+      if len(layer.entity_instances)>0:
+        layers_entities.append(layer)
       # TODO: HANDLE INTGRID VALUES FOR INTGRID LAYERS
+      if len(layer.int_grid_csv)>0:
+        layers_intgrid.append(layer)
   # --------------------------------
   # NOW BUILD LEVEL COLLECTION
   ### defold collection data
@@ -267,7 +272,7 @@ def process_level(ldtk_root: Path, world: World,level: Level, defold_root: Path,
   
 
 
-def process_layer_intGrid(layer: LayerInstance, ldtk_root: Path, world: World,level: Level, defold_root: Path, tilesources, enums, entities_def):
+def process_layer_intGrid(layer_idx: int, layer: LayerInstance, ldtk_root: Path, world: World,level: Level, defold_root: Path, tilesources, enums, entities_def):
    return 
    
 def process_layer_tiles(layer_idx: int, tiles: List[TileInstance], layer: LayerInstance, ldtk_root: Path, world: World,level: Level, defold_root: Path, tilesources, enums, entities_def):
@@ -333,7 +338,7 @@ def process_layer_tiles(layer_idx: int, tiles: List[TileInstance], layer: LayerI
 
   return def_layer
 
-def process_layer_entitiesLayer(layer: LayerInstance, ldtk_root: Path, world: World,level: Level, defold_root: Path, tilesources, enums, entities_def):
+def process_layer_entitiesLayer(layer_idx: int, layer: LayerInstance, ldtk_root: Path, world: World,level: Level, defold_root: Path, tilesources, enums, entities_def):
   return
 
 def ldtk_to_defold(source_file,defold_root,config_file=None):
