@@ -20,6 +20,7 @@ local function get_absolute_path(local_path)
     return editor.external_file_attributes(local_path).path
 end
 
+-- get absolute filesystem path of the defold project root
 local function get_project_root()
     return editor.external_file_attributes('.').path
 end
@@ -41,13 +42,13 @@ function M.get_commands()
                 local ldtk_path = get_absolute_path(ldtk_file)
                 local project_root = get_project_root()
                                 
-                local config_file = editor.prefs.get("ldtkpy.config_file")
+               --  local config_file = editor.prefs.get("ldtkpy.config_file")  -- TODO: handle config file 
                             -- TODO: allow config to python command
                 local python_bin = 'python' 
                 local python_script = project_root .. '/ldtk_py_defold/ldtk_py_defold.py'
                 pprint('Run python:')
                 pprint(python_script, ldtk_path, project_root)
-                editor.execute(python_bin, python_script, ldtk_path, project_root, {})
+                editor.execute(python_bin, python_script, ldtk_path, project_root)
                 pprint('conversion OK')
 
                 return {}

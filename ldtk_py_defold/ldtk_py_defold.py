@@ -3,7 +3,7 @@ from math import floor
 from typing import List
 import LdtkJson153 as LdtkJson153
 
-from LdtkJson153 import LdtkJSON, World, Level, LayerInstance, LayerDefinition, TileInstance
+from LdtkJson153 import LdtkJSON, World, Level, LayerInstance, LayerDefinition, TileInstance, WorldLayout
 import json
 import deftree
 import sys
@@ -106,11 +106,30 @@ def process_tilesets(ldtk_root: Path, model: LdtkJSON, defold_root: Path):
     collision_groups_list = []
     total_tiles = tileset.c_hei * tileset.c_wid
     convex_hulls = [ {"index": i*4, "count":4,  "collision_group":""} for i in range(total_tiles)]
+    # search for defold_collision_groups info in custom data of tile 0:
+    has_defold_collision_groups=False
+    defold_collision_groups_map={}
+    if len(tileset.custom_data)>0 and tileset.custom_data[0].tile_id==0:
+      tile_data = tileset.custom_data[0].data
+      try:
+        tile_data =json.loads(tile_data)
+        if tile_data["defold_collision_groups"]:
+          defold_collision_groups_map = tile_data["defold_collision_groups"]
+          has_defold_collision_groups=True
+      except Exception as e:
+        # do nothing    
+        logger.warning('tile custom data is not in JSON format:' + tile_data)          
     if len(tileset.enum_tags)>0:
       for enum_tag in tileset.enum_tags:
-        collision_groups_list.append(enum_tag.enum_value_id)
+        enum_val = enum_tag.enum_value_id
+        if has_defold_collision_groups:
+          if enum_tag.enum_value_id in defold_collision_groups_map:
+            enum_val = defold_collision_groups_map[enum_val]
+          else:
+            continue # skip!
+        collision_groups_list.append(enum_val)
         for tile_id in  enum_tag.tile_ids:
-          convex_hulls[tile_id]["collision_group"] = enum_tag.enum_value_id      
+          convex_hulls[tile_id]["collision_group"] = enum_val  
     ## output convex_hulls
     e_idx = defold_remove_element(tilesource, "convex_hulls")
     for hull_idx, hull in enumerate(convex_hulls):
@@ -157,7 +176,7 @@ def convert_to_multiworlds(model: LdtkJSON):
       LdtkJSON: the modified model in multiworld
   """
   logger.info('Convert one-world model to multi-world model')
-  world = World( model.default_level_height  , model.default_level_width ,'World',model.iid,model.levels,model.world_grid_height,model.world_grid_width,model.world_layout)
+  world = World( model.default_level_height  , model.default_level_width ,'World',model.dummy_world_iid ,model.levels,model.world_grid_height,model.world_grid_width,model.world_layout)
   model.worlds.append(world)
   logger.info('multi-world model ok')
   return model
@@ -191,20 +210,40 @@ def process_worlds(ldtk_root: Path, model: LdtkJSON,  defold_root: Path, tilesou
     defworld.add_attribute('name', world.identifier)
     ## TODO: HANDLE HEIGHT INVERSION + WORLD LAYOUT TYPE (HORIZONTAL/VERTICAL LAYOUT) FOR LEVEL'S WORLD-POSITION
       ## WE NEED TO CALCULATE THE MAX HEIGHT OF LEVELS --> WE NEED TO ITERATE OVER THE LEVELS AFTERWARDS!
+    all_levels=[]
+    next_level_world_x=0
+    next_level_world_y=0
     for level_idx, level in enumerate(world.levels):
       logger.info('Start of level  processing for level '+ level.identifier)
       if model.external_levels:
         level = load_external_level(ldtk_root, level)
         model.worlds[world_idx].levels[level_idx] = level
+      # we update world positions if linear or horizontal world layout -> we need to know the previous level position!
+      # here we are still with LDTK coordinate system!
+      if world.world_layout == WorldLayout.LINEAR_HORIZONTAL:
+        # for horizontal, put every thing on y=0, and juste shift to the right
+        level.world_y=0
+        level.world_x=next_level_world_x
+        next_level_world_x = next_level_world_x + level.px_wid
+      elif world.world_layout == WorldLayout.LINEAR_VERTICAL:
+        # for vertical, put every thing on X=0, and juste shift to the bottom, we start with top left corner on (0,0)
+        level.world_x=0        
+        level.world_y=  0 if  level_idx==0 else  next_level_world_y
+        next_level_world_y = next_level_world_y + level.px_hei
       # process level data to create tilemaps, collections and data files
       deflevel = process_level(ldtk_root, world, level, defold_root, tilesources, enums, entities_def)
-      logger.info('Level processing ok for level '+ level.identifier)
-      world_pos = defold_element('position','x', level.world_x,'y',  level.world_y)
+      all_levels.append(deflevel)
+      # recompute world position for defold:
+      # in LDTK Y axis goes down, and anchor point is on top left corner of level.
+      # in Defold, Y axis goes up and anchor point is on bottom left corner of level.
+      # To get the same origin point (0,0) as in LDTK GUI, we invert the y coordinate and substract the height of level.
+      world_pos_el = defold_element('position','x', level.world_x,'y',  -level.world_y - level.px_hei)
       defworld.append(defold_element('collection_instances',
                                      'id', deflevel['identifier'] ,
                                      'collection', deflevel['defold_level_file'],
-                                     None, world_pos
+                                     None, world_pos_el
                                      ))
+      logger.info('Level processing ok for level '+ level.identifier) 
     # Write World collection file
     worlds_dir = defold_root/ ldtk_root.relative_to(defold_root) / 'tilemaps'
     world_collection_file = worlds_dir / world.identifier / (world.identifier +'.collection')
@@ -309,7 +348,7 @@ def process_layer_tiles(layer_idx: int, tiles: List[TileInstance], layer: LayerI
         tiles_set.add(tile_px)
       cell = deflayer.add_element('cell')
       cell.add_attribute('x', floor(tile.px[0] / layer.grid_size))
-      cell.add_attribute('y', floor( (total_height - tile.px[1]) / layer.grid_size ) )
+      cell.add_attribute('y', floor( (total_height - tile.px[1]-1) / layer.grid_size ) )
       cell.add_attribute('tile', tile.t)
       if tile.f == 1 or tile.f == 3:
         cell.add_attribute('h_flip', 1)
