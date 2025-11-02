@@ -1,0 +1,38 @@
+tile_set: "/example/tilesources/Scifi_tileset.tilesource"
+layers {
+  id: "Tiles1"
+  z: 0.0
+  cell {
+    x: 1
+    y: 11
+    tile: 74
+    h_flip: 1
+  }
+  cell {
+    x: 16
+    y: 11
+    tile: 74
+  }
+  cell {
+    x: 16
+    y: 10
+    tile: 74
+  }
+  cell {
+    x: 16
+    y: 9
+    tile: 74
+  }
+  cell {
+    x: 16
+    y: 8
+    tile: 74
+  }
+  cell {
+    x: 5
+    y: 7
+    tile: 74
+    h_flip: 1
+  }
+}
+material: "/builtins/materials/tile_map.material"

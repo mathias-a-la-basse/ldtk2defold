@@ -1,0 +1,593 @@
+tile_set: "/samples/gridvania/tilesources/SunnyLand_by_Ansimuz.tilesource"
+layers {
+  id: "Wall_shadows1"
+  z: 0.0
+  cell {
+    x: 10
+    y: 0
+    tile: 204
+  }
+  cell {
+    x: 11
+    y: 0
+    tile: 182
+  }
+  cell {
+    x: 12
+    y: 0
+    tile: 204
+    h_flip: 1
+  }
+  cell {
+    x: 2
+    y: 2
+    tile: 204
+  }
+  cell {
+    x: 14
+    y: 2
+    tile: 204
+    h_flip: 1
+  }
+  cell {
+    x: 2
+    y: 3
+    tile: 204
+  }
+  cell {
+    x: 14
+    y: 3
+    tile: 204
+    h_flip: 1
+  }
+  cell {
+    x: 2
+    y: 4
+    tile: 204
+  }
+  cell {
+    x: 3
+    y: 4
+    tile: 182
+  }
+  cell {
+    x: 4
+    y: 4
+    tile: 182
+  }
+  cell {
+    x: 5
+    y: 4
+    tile: 181
+  }
+  cell {
+    x: 14
+    y: 4
+    tile: 204
+    h_flip: 1
+  }
+  cell {
+    x: 5
+    y: 5
+    tile: 204
+  }
+  cell {
+    x: 14
+    y: 5
+    tile: 204
+    h_flip: 1
+  }
+  cell {
+    x: 5
+    y: 6
+    tile: 158
+  }
+  cell {
+    x: 7
+    y: 6
+    tile: 181
+    h_flip: 1
+  }
+  cell {
+    x: 8
+    y: 6
+    tile: 182
+  }
+  cell {
+    x: 9
+    y: 6
+    tile: 182
+  }
+  cell {
+    x: 10
+    y: 6
+    tile: 182
+  }
+  cell {
+    x: 11
+    y: 6
+    tile: 182
+  }
+  cell {
+    x: 12
+    y: 6
+    tile: 182
+  }
+  cell {
+    x: 13
+    y: 6
+    tile: 182
+  }
+  cell {
+    x: 14
+    y: 6
+    tile: 204
+    h_flip: 1
+  }
+  cell {
+    x: 3
+    y: 7
+    tile: 204
+  }
+  cell {
+    x: 7
+    y: 7
+    tile: 204
+    h_flip: 1
+  }
+  cell {
+    x: 3
+    y: 8
+    tile: 204
+  }
+  cell {
+    x: 7
+    y: 8
+    tile: 158
+    h_flip: 1
+  }
+  cell {
+    x: 3
+    y: 9
+    tile: 204
+  }
+  cell {
+    x: 14
+    y: 9
+    tile: 204
+    h_flip: 1
+  }
+  cell {
+    x: 3
+    y: 10
+    tile: 204
+  }
+  cell {
+    x: 7
+    y: 10
+    tile: 181
+    h_flip: 1
+  }
+  cell {
+    x: 8
+    y: 10
+    tile: 182
+  }
+  cell {
+    x: 9
+    y: 10
+    tile: 182
+  }
+  cell {
+    x: 10
+    y: 10
+    tile: 182
+  }
+  cell {
+    x: 11
+    y: 10
+    tile: 182
+  }
+  cell {
+    x: 12
+    y: 10
+    tile: 181
+  }
+  cell {
+    x: 14
+    y: 10
+    tile: 204
+    h_flip: 1
+  }
+  cell {
+    x: 3
+    y: 11
+    tile: 204
+  }
+  cell {
+    x: 4
+    y: 11
+    tile: 182
+  }
+  cell {
+    x: 5
+    y: 11
+    tile: 182
+  }
+  cell {
+    x: 6
+    y: 11
+    tile: 182
+  }
+  cell {
+    x: 7
+    y: 11
+    tile: 204
+    h_flip: 1
+  }
+  cell {
+    x: 12
+    y: 11
+    tile: 204
+  }
+  cell {
+    x: 13
+    y: 11
+    tile: 182
+  }
+  cell {
+    x: 14
+    y: 11
+    tile: 204
+    h_flip: 1
+  }
+  cell {
+    x: 2
+    y: 15
+    tile: 204
+  }
+  cell {
+    x: 14
+    y: 15
+    tile: 204
+    h_flip: 1
+  }
+  cell {
+    x: 2
+    y: 16
+    tile: 204
+  }
+  cell {
+    x: 3
+    y: 16
+    tile: 182
+  }
+  cell {
+    x: 4
+    y: 16
+    tile: 182
+  }
+  cell {
+    x: 5
+    y: 16
+    tile: 182
+  }
+  cell {
+    x: 6
+    y: 16
+    tile: 182
+  }
+  cell {
+    x: 7
+    y: 16
+    tile: 182
+  }
+  cell {
+    x: 8
+    y: 16
+    tile: 181
+  }
+  cell {
+    x: 14
+    y: 16
+    tile: 204
+    h_flip: 1
+  }
+  cell {
+    x: 8
+    y: 17
+    tile: 158
+  }
+  cell {
+    x: 12
+    y: 17
+    tile: 181
+    h_flip: 1
+  }
+  cell {
+    x: 13
+    y: 17
+    tile: 182
+  }
+  cell {
+    x: 14
+    y: 17
+    tile: 204
+    h_flip: 1
+  }
+  cell {
+    x: 2
+    y: 18
+    tile: 204
+  }
+  cell {
+    x: 12
+    y: 18
+    tile: 204
+    h_flip: 1
+  }
+  cell {
+    x: 2
+    y: 19
+    tile: 204
+  }
+  cell {
+    x: 12
+    y: 19
+    tile: 204
+    h_flip: 1
+  }
+  cell {
+    x: 2
+    y: 20
+    tile: 204
+  }
+  cell {
+    x: 3
+    y: 20
+    tile: 182
+  }
+  cell {
+    x: 4
+    y: 20
+    tile: 182
+  }
+  cell {
+    x: 5
+    y: 20
+    tile: 182
+  }
+  cell {
+    x: 6
+    y: 20
+    tile: 182
+  }
+  cell {
+    x: 7
+    y: 20
+    tile: 182
+  }
+  cell {
+    x: 8
+    y: 20
+    tile: 182
+  }
+  cell {
+    x: 9
+    y: 20
+    tile: 182
+  }
+  cell {
+    x: 10
+    y: 20
+    tile: 182
+  }
+  cell {
+    x: 11
+    y: 20
+    tile: 182
+  }
+  cell {
+    x: 12
+    y: 20
+    tile: 204
+    h_flip: 1
+  }
+  cell {
+    x: 12
+    y: 22
+    tile: 204
+    h_flip: 1
+  }
+  cell {
+    x: 12
+    y: 23
+    tile: 204
+    h_flip: 1
+  }
+  cell {
+    x: 0
+    y: 24
+    tile: 182
+  }
+  cell {
+    x: 1
+    y: 24
+    tile: 182
+  }
+  cell {
+    x: 2
+    y: 24
+    tile: 182
+  }
+  cell {
+    x: 3
+    y: 24
+    tile: 182
+  }
+  cell {
+    x: 4
+    y: 24
+    tile: 182
+  }
+  cell {
+    x: 5
+    y: 24
+    tile: 182
+  }
+  cell {
+    x: 6
+    y: 24
+    tile: 182
+  }
+  cell {
+    x: 7
+    y: 24
+    tile: 182
+  }
+  cell {
+    x: 8
+    y: 24
+    tile: 181
+  }
+  cell {
+    x: 12
+    y: 24
+    tile: 204
+    h_flip: 1
+  }
+  cell {
+    x: 8
+    y: 25
+    tile: 204
+  }
+  cell {
+    x: 12
+    y: 25
+    tile: 204
+    h_flip: 1
+  }
+  cell {
+    x: 8
+    y: 26
+    tile: 204
+  }
+  cell {
+    x: 12
+    y: 26
+    tile: 204
+    h_flip: 1
+  }
+  cell {
+    x: 8
+    y: 27
+    tile: 204
+  }
+  cell {
+    x: 12
+    y: 27
+    tile: 204
+    h_flip: 1
+  }
+  cell {
+    x: 8
+    y: 28
+    tile: 204
+  }
+  cell {
+    x: 9
+    y: 28
+    tile: 182
+  }
+  cell {
+    x: 10
+    y: 28
+    tile: 182
+  }
+  cell {
+    x: 11
+    y: 28
+    tile: 182
+  }
+  cell {
+    x: 12
+    y: 28
+    tile: 204
+    h_flip: 1
+  }
+}
+layers {
+  id: "Wall_shadows2"
+  z: 0.001
+  cell {
+    x: 10
+    y: 0
+    tile: 182
+  }
+  cell {
+    x: 12
+    y: 0
+    tile: 182
+  }
+  cell {
+    x: 2
+    y: 4
+    tile: 182
+  }
+  cell {
+    x: 14
+    y: 6
+    tile: 182
+  }
+  cell {
+    x: 3
+    y: 11
+    tile: 182
+  }
+  cell {
+    x: 7
+    y: 11
+    tile: 182
+  }
+  cell {
+    x: 12
+    y: 11
+    tile: 182
+  }
+  cell {
+    x: 14
+    y: 11
+    tile: 182
+  }
+  cell {
+    x: 2
+    y: 16
+    tile: 182
+  }
+  cell {
+    x: 14
+    y: 17
+    tile: 182
+  }
+  cell {
+    x: 2
+    y: 20
+    tile: 182
+  }
+  cell {
+    x: 12
+    y: 20
+    tile: 182
+  }
+  cell {
+    x: 8
+    y: 28
+    tile: 182
+  }
+  cell {
+    x: 12
+    y: 28
+    tile: 182
+  }
+}
+material: "/builtins/materials/tile_map.material"

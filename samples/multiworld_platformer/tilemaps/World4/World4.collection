@@ -1,0 +1,25 @@
+name: "World4"
+collection_instances {
+  id: "World4_D0_Level_0"
+  collection: "/samples/multiworld_platformer/tilemaps/World4/World4_D0_Level_0.collection"
+  position {
+    x: 0
+    y: -256
+  }
+}
+collection_instances {
+  id: "World4_D0_Level_1"
+  collection: "/samples/multiworld_platformer/tilemaps/World4/World4_D0_Level_1.collection"
+  position {
+    x: 384
+    y: -512
+  }
+}
+collection_instances {
+  id: "World4_D0_Level_2"
+  collection: "/samples/multiworld_platformer/tilemaps/World4/World4_D0_Level_2.collection"
+  position {
+    x: 384
+    y: -896
+  }
+}

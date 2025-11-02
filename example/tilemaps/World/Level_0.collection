@@ -1,0 +1,24 @@
+name: "Level_0"
+scale_along_z: 0
+embedded_instances {
+  id: "Layer_Tiles"
+  data: "components {\n"
+  "  id: \"Tiles\"\n"
+  "  component: \"/example/tilemaps/World/Level_0/Level_0_Tiles.tilemap\"\n"
+  "}\n"
+  ""
+  position {
+    z: 0.03
+  }
+}
+embedded_instances {
+  id: "Layer_IntGrid"
+  data: "components {\n"
+  "  id: \"IntGrid\"\n"
+  "  component: \"/example/tilemaps/World/Level_0/Level_0_IntGrid.tilemap\"\n"
+  "}\n"
+  ""
+  position {
+    z: 0.01
+  }
+}

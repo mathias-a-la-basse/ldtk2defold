@@ -1,0 +1,73 @@
+name: "World3"
+collection_instances {
+  id: "World3_D0_Level_0"
+  collection: "/samples/multiworld_platformer/tilemaps/World3/World3_D0_Level_0.collection"
+  position {
+    x: 0
+    y: -128
+  }
+}
+collection_instances {
+  id: "World3_D0_Level_1"
+  collection: "/samples/multiworld_platformer/tilemaps/World3/World3_D0_Level_1.collection"
+  position {
+    x: 0
+    y: -192
+  }
+}
+collection_instances {
+  id: "World3_D0_Level_2"
+  collection: "/samples/multiworld_platformer/tilemaps/World3/World3_D0_Level_2.collection"
+  position {
+    x: 0
+    y: -448
+  }
+}
+collection_instances {
+  id: "World3_D0_Level_3"
+  collection: "/samples/multiworld_platformer/tilemaps/World3/World3_D0_Level_3.collection"
+  position {
+    x: 0
+    y: -704
+  }
+}
+collection_instances {
+  id: "World3_D0_Level_4"
+  collection: "/samples/multiworld_platformer/tilemaps/World3/World3_D0_Level_4.collection"
+  position {
+    x: 0
+    y: -960
+  }
+}
+collection_instances {
+  id: "World3_D0_Level_5"
+  collection: "/samples/multiworld_platformer/tilemaps/World3/World3_D0_Level_5.collection"
+  position {
+    x: 0
+    y: -1264
+  }
+}
+collection_instances {
+  id: "World3_D0_Level_6"
+  collection: "/samples/multiworld_platformer/tilemaps/World3/World3_D0_Level_6.collection"
+  position {
+    x: 0
+    y: -1520
+  }
+}
+collection_instances {
+  id: "World3_D0_Level_7"
+  collection: "/samples/multiworld_platformer/tilemaps/World3/World3_D0_Level_7.collection"
+  position {
+    x: 0
+    y: -1776
+  }
+}
+collection_instances {
+  id: "World3_D0_Level_8"
+  collection: "/samples/multiworld_platformer/tilemaps/World3/World3_D0_Level_8.collection"
+  position {
+    x: 0
+    y: -2032
+  }
+}

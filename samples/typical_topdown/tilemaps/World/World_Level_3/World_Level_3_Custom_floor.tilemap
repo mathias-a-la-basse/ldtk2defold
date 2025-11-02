@@ -1,0 +1,201 @@
+tile_set: "/samples/typical_topdown/tilesources/TopDown_by_deepnight.tilesource"
+layers {
+  id: "Custom_floor1"
+  z: 0.0
+  cell {
+    x: 10
+    y: 10
+    tile: 63
+  }
+  cell {
+    x: 11
+    y: 10
+    tile: 64
+  }
+  cell {
+    x: 12
+    y: 10
+    tile: 64
+  }
+  cell {
+    x: 5
+    y: 9
+    tile: 61
+  }
+  cell {
+    x: 6
+    y: 9
+    tile: 63
+  }
+  cell {
+    x: 7
+    y: 9
+    tile: 60
+  }
+  cell {
+    x: 8
+    y: 9
+    tile: 60
+  }
+  cell {
+    x: 9
+    y: 9
+    tile: 64
+  }
+  cell {
+    x: 10
+    y: 9
+    tile: 61
+  }
+  cell {
+    x: 11
+    y: 9
+    tile: 59
+  }
+  cell {
+    x: 12
+    y: 9
+    tile: 61
+  }
+  cell {
+    x: 5
+    y: 8
+    tile: 59
+  }
+  cell {
+    x: 6
+    y: 8
+    tile: 63
+  }
+  cell {
+    x: 7
+    y: 8
+    tile: 62
+  }
+  cell {
+    x: 8
+    y: 8
+    tile: 63
+  }
+  cell {
+    x: 9
+    y: 8
+    tile: 63
+  }
+  cell {
+    x: 11
+    y: 8
+    tile: 62
+  }
+  cell {
+    x: 12
+    y: 8
+    tile: 63
+  }
+  cell {
+    x: 5
+    y: 7
+    tile: 60
+  }
+  cell {
+    x: 6
+    y: 7
+    tile: 60
+  }
+  cell {
+    x: 7
+    y: 7
+    tile: 59
+  }
+  cell {
+    x: 8
+    y: 7
+    tile: 62
+  }
+  cell {
+    x: 9
+    y: 7
+    tile: 63
+  }
+  cell {
+    x: 10
+    y: 7
+    tile: 61
+  }
+  cell {
+    x: 11
+    y: 7
+    tile: 64
+  }
+  cell {
+    x: 1
+    y: 1
+    tile: 14
+  }
+  cell {
+    x: 2
+    y: 1
+    tile: 28
+  }
+  cell {
+    x: 3
+    y: 1
+    tile: 17
+  }
+  cell {
+    x: 4
+    y: 1
+    tile: 27
+  }
+  cell {
+    x: 5
+    y: 1
+    tile: 14
+  }
+  cell {
+    x: 6
+    y: 1
+    tile: 17
+  }
+  cell {
+    x: 7
+    y: 1
+    tile: 27
+  }
+  cell {
+    x: 8
+    y: 1
+    tile: 16
+  }
+  cell {
+    x: 9
+    y: 1
+    tile: 25
+  }
+  cell {
+    x: 10
+    y: 1
+    tile: 28
+  }
+  cell {
+    x: 11
+    y: 1
+    tile: 16
+  }
+  cell {
+    x: 12
+    y: 1
+    tile: 16
+  }
+  cell {
+    x: 13
+    y: 1
+    tile: 28
+  }
+  cell {
+    x: 14
+    y: 1
+    tile: 26
+  }
+}
+material: "/builtins/materials/tile_map.material"

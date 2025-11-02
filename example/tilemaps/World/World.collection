@@ -1,0 +1,9 @@
+name: "World"
+collection_instances {
+  id: "Level_0"
+  collection: "/example/tilemaps/World/Level_0.collection"
+  position {
+    x: 0
+    y: -288
+  }
+}

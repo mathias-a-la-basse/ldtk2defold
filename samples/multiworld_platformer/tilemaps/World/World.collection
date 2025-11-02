@@ -1,0 +1,41 @@
+name: "World"
+collection_instances {
+  id: "World_D0_Level_0_Entry"
+  collection: "/samples/multiworld_platformer/tilemaps/World/World_D0_Level_0_Entry.collection"
+  position {
+    x: 0
+    y: 0
+  }
+}
+collection_instances {
+  id: "World_D0_Level_1_Top"
+  collection: "/samples/multiworld_platformer/tilemaps/World/World_D0_Level_1_Top.collection"
+  position {
+    x: 352
+    y: 336
+  }
+}
+collection_instances {
+  id: "World_D0_Level_2_Bottom"
+  collection: "/samples/multiworld_platformer/tilemaps/World/World_D0_Level_2_Bottom.collection"
+  position {
+    x: 80
+    y: -256
+  }
+}
+collection_instances {
+  id: "World_D0_Level_3"
+  collection: "/samples/multiworld_platformer/tilemaps/World/World_D0_Level_3.collection"
+  position {
+    x: 848
+    y: 16
+  }
+}
+collection_instances {
+  id: "World_D0_Level_4"
+  collection: "/samples/multiworld_platformer/tilemaps/World/World_D0_Level_4.collection"
+  position {
+    x: 512
+    y: 688
+  }
+}

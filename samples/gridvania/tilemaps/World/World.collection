@@ -1,0 +1,169 @@
+name: "World"
+collection_instances {
+  id: "Entrance"
+  collection: "/samples/gridvania/tilemaps/World/Entrance.collection"
+  position {
+    x: 0
+    y: -256
+  }
+}
+collection_instances {
+  id: "Cross_roads"
+  collection: "/samples/gridvania/tilemaps/World/Cross_roads.collection"
+  position {
+    x: 0
+    y: -768
+  }
+}
+collection_instances {
+  id: "Ossuary"
+  collection: "/samples/gridvania/tilemaps/World/Ossuary.collection"
+  position {
+    x: -1024
+    y: -768
+  }
+}
+collection_instances {
+  id: "Water_supply"
+  collection: "/samples/gridvania/tilemaps/World/Water_supply.collection"
+  position {
+    x: -512
+    y: -512
+  }
+}
+collection_instances {
+  id: "Sewers2"
+  collection: "/samples/gridvania/tilemaps/World/Sewers2.collection"
+  position {
+    x: 256
+    y: -1536
+  }
+}
+collection_instances {
+  id: "Sewers_trash"
+  collection: "/samples/gridvania/tilemaps/World/Sewers_trash.collection"
+  position {
+    x: 256
+    y: -2048
+  }
+}
+collection_instances {
+  id: "Boss_room"
+  collection: "/samples/gridvania/tilemaps/World/Boss_room.collection"
+  position {
+    x: 1536
+    y: -1280
+  }
+}
+collection_instances {
+  id: "Large_water"
+  collection: "/samples/gridvania/tilemaps/World/Large_water.collection"
+  position {
+    x: 1024
+    y: -256
+  }
+}
+collection_instances {
+  id: "Shop"
+  collection: "/samples/gridvania/tilemaps/World/Shop.collection"
+  position {
+    x: 256
+    y: -768
+  }
+}
+collection_instances {
+  id: "Sewers1"
+  collection: "/samples/gridvania/tilemaps/World/Sewers1.collection"
+  position {
+    x: 512
+    y: -1024
+  }
+}
+collection_instances {
+  id: "The_ponds"
+  collection: "/samples/gridvania/tilemaps/World/The_ponds.collection"
+  position {
+    x: 768
+    y: -1024
+  }
+}
+collection_instances {
+  id: "Pit"
+  collection: "/samples/gridvania/tilemaps/World/Pit.collection"
+  position {
+    x: 768
+    y: -768
+  }
+}
+collection_instances {
+  id: "The_tower"
+  collection: "/samples/gridvania/tilemaps/World/The_tower.collection"
+  position {
+    x: 1536
+    y: -512
+  }
+}
+collection_instances {
+  id: "Garden"
+  collection: "/samples/gridvania/tilemaps/World/Garden.collection"
+  position {
+    x: 512
+    y: -256
+  }
+}
+collection_instances {
+  id: "SaveRoom"
+  collection: "/samples/gridvania/tilemaps/World/SaveRoom.collection"
+  position {
+    x: 1024
+    y: -768
+  }
+}
+collection_instances {
+  id: "Flooded_rooms"
+  collection: "/samples/gridvania/tilemaps/World/Flooded_rooms.collection"
+  position {
+    x: 1024
+    y: -1536
+  }
+}
+collection_instances {
+  id: "Long_hallway"
+  collection: "/samples/gridvania/tilemaps/World/Long_hallway.collection"
+  position {
+    x: 1536
+    y: -512
+  }
+}
+collection_instances {
+  id: "Exit"
+  collection: "/samples/gridvania/tilemaps/World/Exit.collection"
+  position {
+    x: 2816
+    y: -256
+  }
+}
+collection_instances {
+  id: "Hidden_cave"
+  collection: "/samples/gridvania/tilemaps/World/Hidden_cave.collection"
+  position {
+    x: 1280
+    y: -768
+  }
+}
+collection_instances {
+  id: "Shop_entrance"
+  collection: "/samples/gridvania/tilemaps/World/Shop_entrance.collection"
+  position {
+    x: 512
+    y: -512
+  }
+}
+collection_instances {
+  id: "Shortcut_passage"
+  collection: "/samples/gridvania/tilemaps/World/Shortcut_passage.collection"
+  position {
+    x: 512
+    y: -1536
+  }
+}

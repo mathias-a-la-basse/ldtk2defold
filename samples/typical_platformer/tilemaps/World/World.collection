@@ -1,0 +1,33 @@
+name: "World"
+collection_instances {
+  id: "Your_typical_2D_platformer"
+  collection: "/samples/typical_platformer/tilemaps/World/Your_typical_2D_platformer.collection"
+  position {
+    x: 0
+    y: 0
+  }
+}
+collection_instances {
+  id: "Top"
+  collection: "/samples/typical_platformer/tilemaps/World/Top.collection"
+  position {
+    x: 352
+    y: -352
+  }
+}
+collection_instances {
+  id: "Bottom"
+  collection: "/samples/typical_platformer/tilemaps/World/Bottom.collection"
+  position {
+    x: 80
+    y: 336
+  }
+}
+collection_instances {
+  id: "World_Level_3"
+  collection: "/samples/typical_platformer/tilemaps/World/World_Level_3.collection"
+  position {
+    x: 848
+    y: 0
+  }
+}

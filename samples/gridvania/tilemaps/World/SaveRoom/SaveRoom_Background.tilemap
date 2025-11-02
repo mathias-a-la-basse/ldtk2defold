@@ -1,0 +1,814 @@
+tile_set: "/samples/gridvania/tilesources/SunnyLand_by_Ansimuz.tilesource"
+layers {
+  id: "Background1"
+  z: 0.0
+  cell {
+    x: 10
+    y: 12
+    tile: 411
+  }
+  cell {
+    x: 11
+    y: 12
+    tile: 411
+  }
+  cell {
+    x: 12
+    y: 12
+    tile: 411
+  }
+  cell {
+    x: 13
+    y: 12
+    tile: 411
+  }
+  cell {
+    x: 14
+    y: 12
+    tile: 411
+  }
+  cell {
+    x: 15
+    y: 12
+    tile: 411
+  }
+  cell {
+    x: 10
+    y: 13
+    tile: 411
+  }
+  cell {
+    x: 11
+    y: 13
+    tile: 411
+    h_flip: 1
+  }
+  cell {
+    x: 10
+    y: 14
+    tile: 411
+  }
+  cell {
+    x: 10
+    y: 15
+    tile: 411
+  }
+  cell {
+    x: 10
+    y: 16
+    tile: 411
+  }
+  cell {
+    x: 9
+    y: 17
+    tile: 411
+    v_flip: 1
+  }
+  cell {
+    x: 10
+    y: 17
+    tile: 411
+  }
+  cell {
+    x: 11
+    y: 17
+    tile: 411
+    h_flip: 1
+    v_flip: 1
+  }
+  cell {
+    x: 3
+    y: 18
+    tile: 411
+  }
+  cell {
+    x: 4
+    y: 18
+    tile: 411
+  }
+  cell {
+    x: 5
+    y: 18
+    tile: 411
+  }
+  cell {
+    x: 6
+    y: 18
+    tile: 411
+  }
+  cell {
+    x: 9
+    y: 18
+    tile: 411
+  }
+  cell {
+    x: 10
+    y: 18
+    tile: 411
+  }
+  cell {
+    x: 11
+    y: 18
+    tile: 411
+  }
+  cell {
+    x: 12
+    y: 18
+    tile: 411
+  }
+  cell {
+    x: 13
+    y: 18
+    tile: 411
+  }
+  cell {
+    x: 14
+    y: 18
+    tile: 411
+  }
+  cell {
+    x: 3
+    y: 19
+    tile: 411
+  }
+  cell {
+    x: 4
+    y: 19
+    tile: 411
+  }
+  cell {
+    x: 5
+    y: 19
+    tile: 411
+  }
+  cell {
+    x: 6
+    y: 19
+    tile: 411
+  }
+  cell {
+    x: 9
+    y: 19
+    tile: 411
+  }
+  cell {
+    x: 10
+    y: 19
+    tile: 411
+  }
+  cell {
+    x: 11
+    y: 19
+    tile: 411
+  }
+  cell {
+    x: 12
+    y: 19
+    tile: 411
+  }
+  cell {
+    x: 13
+    y: 19
+    tile: 411
+  }
+  cell {
+    x: 14
+    y: 19
+    tile: 411
+  }
+  cell {
+    x: 3
+    y: 20
+    tile: 362
+    h_flip: 1
+  }
+  cell {
+    x: 4
+    y: 20
+    tile: 411
+  }
+  cell {
+    x: 5
+    y: 20
+    tile: 411
+  }
+  cell {
+    x: 6
+    y: 20
+    tile: 362
+  }
+  cell {
+    x: 9
+    y: 20
+    tile: 362
+    h_flip: 1
+  }
+  cell {
+    x: 10
+    y: 20
+    tile: 411
+  }
+  cell {
+    x: 11
+    y: 20
+    tile: 411
+  }
+  cell {
+    x: 12
+    y: 20
+    tile: 411
+  }
+  cell {
+    x: 13
+    y: 20
+    tile: 411
+  }
+  cell {
+    x: 14
+    y: 20
+    tile: 362
+  }
+  cell {
+    x: 3
+    y: 21
+    tile: 362
+    h_flip: 1
+  }
+  cell {
+    x: 4
+    y: 21
+    tile: 411
+  }
+  cell {
+    x: 5
+    y: 21
+    tile: 362
+  }
+  cell {
+    x: 6
+    y: 21
+    tile: 411
+    h_flip: 1
+  }
+  cell {
+    x: 9
+    y: 21
+    tile: 411
+  }
+  cell {
+    x: 10
+    y: 21
+    tile: 362
+    h_flip: 1
+  }
+  cell {
+    x: 11
+    y: 21
+    tile: 411
+  }
+  cell {
+    x: 12
+    y: 21
+    tile: 411
+  }
+  cell {
+    x: 13
+    y: 21
+    tile: 411
+  }
+  cell {
+    x: 14
+    y: 21
+    tile: 362
+  }
+  cell {
+    x: 2
+    y: 22
+    tile: 411
+    v_flip: 1
+  }
+  cell {
+    x: 3
+    y: 22
+    tile: 362
+    h_flip: 1
+  }
+  cell {
+    x: 4
+    y: 22
+    tile: 411
+  }
+  cell {
+    x: 5
+    y: 22
+    tile: 362
+  }
+  cell {
+    x: 6
+    y: 22
+    tile: 411
+    h_flip: 1
+    v_flip: 1
+  }
+  cell {
+    x: 9
+    y: 22
+    tile: 411
+    v_flip: 1
+  }
+  cell {
+    x: 10
+    y: 22
+    tile: 362
+    h_flip: 1
+  }
+  cell {
+    x: 11
+    y: 22
+    tile: 411
+  }
+  cell {
+    x: 12
+    y: 22
+    tile: 411
+  }
+  cell {
+    x: 13
+    y: 22
+    tile: 411
+  }
+  cell {
+    x: 14
+    y: 22
+    tile: 362
+  }
+  cell {
+    x: 0
+    y: 23
+    tile: 411
+  }
+  cell {
+    x: 1
+    y: 23
+    tile: 411
+  }
+  cell {
+    x: 2
+    y: 23
+    tile: 411
+  }
+  cell {
+    x: 3
+    y: 23
+    tile: 411
+  }
+  cell {
+    x: 4
+    y: 23
+    tile: 411
+  }
+  cell {
+    x: 5
+    y: 23
+    tile: 411
+  }
+  cell {
+    x: 6
+    y: 23
+    tile: 411
+  }
+  cell {
+    x: 7
+    y: 23
+    tile: 411
+  }
+  cell {
+    x: 8
+    y: 23
+    tile: 411
+  }
+  cell {
+    x: 9
+    y: 23
+    tile: 411
+  }
+  cell {
+    x: 10
+    y: 23
+    tile: 411
+  }
+  cell {
+    x: 11
+    y: 23
+    tile: 411
+  }
+  cell {
+    x: 12
+    y: 23
+    tile: 411
+  }
+  cell {
+    x: 13
+    y: 23
+    tile: 411
+  }
+  cell {
+    x: 14
+    y: 23
+    tile: 362
+  }
+  cell {
+    x: 0
+    y: 24
+    tile: 411
+  }
+  cell {
+    x: 1
+    y: 24
+    tile: 411
+  }
+  cell {
+    x: 2
+    y: 24
+    tile: 411
+  }
+  cell {
+    x: 3
+    y: 24
+    tile: 411
+  }
+  cell {
+    x: 4
+    y: 24
+    tile: 411
+  }
+  cell {
+    x: 5
+    y: 24
+    tile: 411
+  }
+  cell {
+    x: 6
+    y: 24
+    tile: 411
+  }
+  cell {
+    x: 7
+    y: 24
+    tile: 411
+  }
+  cell {
+    x: 8
+    y: 24
+    tile: 411
+  }
+  cell {
+    x: 9
+    y: 24
+    tile: 411
+  }
+  cell {
+    x: 10
+    y: 24
+    tile: 411
+  }
+  cell {
+    x: 11
+    y: 24
+    tile: 411
+  }
+  cell {
+    x: 12
+    y: 24
+    tile: 411
+  }
+  cell {
+    x: 13
+    y: 24
+    tile: 411
+  }
+  cell {
+    x: 14
+    y: 24
+    tile: 362
+  }
+  cell {
+    x: 0
+    y: 25
+    tile: 305
+  }
+  cell {
+    x: 1
+    y: 25
+    tile: 411
+  }
+  cell {
+    x: 2
+    y: 25
+    tile: 411
+  }
+  cell {
+    x: 3
+    y: 25
+    tile: 411
+  }
+  cell {
+    x: 4
+    y: 25
+    tile: 411
+  }
+  cell {
+    x: 5
+    y: 25
+    tile: 411
+  }
+  cell {
+    x: 6
+    y: 25
+    tile: 411
+  }
+  cell {
+    x: 7
+    y: 25
+    tile: 411
+  }
+  cell {
+    x: 8
+    y: 25
+    tile: 411
+  }
+  cell {
+    x: 9
+    y: 25
+    tile: 411
+  }
+  cell {
+    x: 10
+    y: 25
+    tile: 411
+  }
+  cell {
+    x: 11
+    y: 25
+    tile: 411
+  }
+  cell {
+    x: 12
+    y: 25
+    tile: 411
+  }
+  cell {
+    x: 13
+    y: 25
+    tile: 411
+  }
+  cell {
+    x: 14
+    y: 25
+    tile: 362
+  }
+  cell {
+    x: 0
+    y: 26
+    tile: 411
+  }
+  cell {
+    x: 1
+    y: 26
+    tile: 362
+    h_flip: 1
+  }
+  cell {
+    x: 2
+    y: 26
+    tile: 411
+  }
+  cell {
+    x: 3
+    y: 26
+    tile: 411
+  }
+  cell {
+    x: 4
+    y: 26
+    tile: 411
+  }
+  cell {
+    x: 5
+    y: 26
+    tile: 411
+  }
+  cell {
+    x: 6
+    y: 26
+    tile: 411
+  }
+  cell {
+    x: 7
+    y: 26
+    tile: 411
+  }
+  cell {
+    x: 8
+    y: 26
+    tile: 411
+  }
+  cell {
+    x: 9
+    y: 26
+    tile: 411
+  }
+  cell {
+    x: 10
+    y: 26
+    tile: 411
+  }
+  cell {
+    x: 11
+    y: 26
+    tile: 411
+  }
+  cell {
+    x: 12
+    y: 26
+    tile: 411
+  }
+  cell {
+    x: 13
+    y: 26
+    tile: 362
+  }
+  cell {
+    x: 14
+    y: 26
+    tile: 411
+    h_flip: 1
+  }
+  cell {
+    x: 1
+    y: 27
+    tile: 411
+  }
+  cell {
+    x: 2
+    y: 27
+    tile: 305
+  }
+  cell {
+    x: 3
+    y: 27
+    tile: 411
+  }
+  cell {
+    x: 4
+    y: 27
+    tile: 305
+  }
+  cell {
+    x: 5
+    y: 27
+    tile: 411
+  }
+  cell {
+    x: 6
+    y: 27
+    tile: 411
+  }
+  cell {
+    x: 7
+    y: 27
+    tile: 411
+  }
+  cell {
+    x: 8
+    y: 27
+    tile: 411
+  }
+  cell {
+    x: 9
+    y: 27
+    tile: 411
+  }
+  cell {
+    x: 10
+    y: 27
+    tile: 411
+  }
+  cell {
+    x: 11
+    y: 27
+    tile: 411
+  }
+  cell {
+    x: 12
+    y: 27
+    tile: 330
+  }
+  cell {
+    x: 13
+    y: 27
+    tile: 411
+    h_flip: 1
+  }
+}
+layers {
+  id: "Background2"
+  z: 0.001
+  cell {
+    x: 4
+    y: 20
+    tile: 361
+    h_flip: 1
+  }
+  cell {
+    x: 5
+    y: 20
+    tile: 361
+  }
+  cell {
+    x: 10
+    y: 20
+    tile: 361
+    h_flip: 1
+  }
+  cell {
+    x: 13
+    y: 20
+    tile: 361
+  }
+  cell {
+    x: 4
+    y: 21
+    tile: 361
+    h_flip: 1
+  }
+  cell {
+    x: 11
+    y: 21
+    tile: 361
+    h_flip: 1
+  }
+  cell {
+    x: 13
+    y: 21
+    tile: 361
+  }
+  cell {
+    x: 4
+    y: 22
+    tile: 361
+    h_flip: 1
+  }
+  cell {
+    x: 11
+    y: 22
+    tile: 361
+    h_flip: 1
+  }
+  cell {
+    x: 13
+    y: 22
+    tile: 361
+  }
+  cell {
+    x: 13
+    y: 23
+    tile: 361
+  }
+  cell {
+    x: 13
+    y: 24
+    tile: 361
+  }
+  cell {
+    x: 13
+    y: 25
+    tile: 361
+  }
+  cell {
+    x: 2
+    y: 26
+    tile: 361
+    h_flip: 1
+  }
+  cell {
+    x: 12
+    y: 26
+    tile: 361
+  }
+}
+layers {
+  id: "Background3"
+  z: 0.002
+  cell {
+    x: 4
+    y: 21
+    tile: 361
+  }
+  cell {
+    x: 4
+    y: 22
+    tile: 361
+  }
+}
+material: "/builtins/materials/tile_map.material"

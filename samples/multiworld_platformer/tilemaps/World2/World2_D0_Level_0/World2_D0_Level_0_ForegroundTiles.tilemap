@@ -1,0 +1,214 @@
+tile_set: "/samples/multiworld_platformer/tilesources/TopDown_by_deepnight.tilesource"
+layers {
+  id: "ForegroundTiles1"
+  z: 0.0
+  cell {
+    x: 0
+    y: 2
+    tile: 35
+  }
+  cell {
+    x: 1
+    y: 2
+    tile: 36
+  }
+  cell {
+    x: 2
+    y: 2
+    tile: 35
+  }
+  cell {
+    x: 3
+    y: 2
+    tile: 35
+  }
+  cell {
+    x: 4
+    y: 2
+    tile: 38
+  }
+  cell {
+    x: 5
+    y: 2
+    tile: 36
+  }
+  cell {
+    x: 6
+    y: 2
+    tile: 38
+  }
+  cell {
+    x: 7
+    y: 2
+    tile: 37
+  }
+  cell {
+    x: 0
+    y: 3
+    tile: 33
+  }
+  cell {
+    x: 1
+    y: 3
+    tile: 35
+  }
+  cell {
+    x: 2
+    y: 3
+    tile: 37
+  }
+  cell {
+    x: 3
+    y: 3
+    tile: 35
+  }
+  cell {
+    x: 4
+    y: 3
+    tile: 34
+  }
+  cell {
+    x: 5
+    y: 3
+    tile: 34
+  }
+  cell {
+    x: 6
+    y: 3
+    tile: 37
+  }
+  cell {
+    x: 7
+    y: 3
+    tile: 38
+  }
+  cell {
+    x: 10
+    y: 3
+    tile: 15
+  }
+  cell {
+    x: 11
+    y: 3
+    tile: 15
+  }
+  cell {
+    x: 12
+    y: 3
+    tile: 15
+  }
+  cell {
+    x: 13
+    y: 3
+    tile: 15
+  }
+  cell {
+    x: 14
+    y: 3
+    tile: 15
+  }
+  cell {
+    x: 15
+    y: 3
+    tile: 15
+  }
+  cell {
+    x: 13
+    y: 6
+    tile: 59
+  }
+  cell {
+    x: 14
+    y: 6
+    tile: 59
+  }
+  cell {
+    x: 15
+    y: 6
+    tile: 59
+  }
+}
+layers {
+  id: "ForegroundTiles2"
+  z: 0.001
+  cell {
+    x: 0
+    y: 2
+    tile: 72
+  }
+  cell {
+    x: 7
+    y: 2
+    tile: 72
+    h_flip: 1
+  }
+  cell {
+    x: 0
+    y: 3
+    tile: 70
+    v_flip: 1
+  }
+  cell {
+    x: 7
+    y: 3
+    tile: 72
+    h_flip: 1
+  }
+  cell {
+    x: 10
+    y: 3
+    tile: 1
+  }
+  cell {
+    x: 11
+    y: 3
+    tile: 1
+  }
+  cell {
+    x: 12
+    y: 3
+    tile: 1
+  }
+  cell {
+    x: 13
+    y: 3
+    tile: 1
+  }
+  cell {
+    x: 14
+    y: 3
+    tile: 1
+  }
+  cell {
+    x: 15
+    y: 3
+    tile: 1
+  }
+}
+layers {
+  id: "ForegroundTiles3"
+  z: 0.002
+  cell {
+    x: 0
+    y: 2
+    tile: 7
+    h_flip: 1
+  }
+  cell {
+    x: 7
+    y: 2
+    tile: 7
+  }
+  cell {
+    x: 0
+    y: 3
+    tile: 7
+    h_flip: 1
+  }
+  cell {
+    x: 7
+    y: 3
+    tile: 7
+  }
+}
+material: "/builtins/materials/tile_map.material"
