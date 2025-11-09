@@ -30,18 +30,6 @@ def path_defold_relative(thepath: Path, defold_root: Path) -> str:
   thepath = (thepath).resolve().absolute().relative_to(defold_root)
   return str_path('/' /thepath)
 
-DEFOLD_TILESOURCE_TEMPLATE = """image: ""
-tile_width: 32
-tile_height: 32
-collision: ""
-convex_hulls {
-  index: 0
-  count: 4
-  collision_group: ""
-}
-collision_groups: "default"
-"""
-
 def pairwise(iterable):
     "s -> (s0, s1), (s2, s3), (s4, s5), ..."
     a = iter(iterable)
@@ -55,17 +43,6 @@ def defold_element(el_name, *args):
     else:
       el.add_attribute(a_name,a_value)
   return el
-
-def defold_element_str_escape(element: deftree.Element):
-  """ Return an escape string of the element data, to be embeded in an attribute of defold files
-   This is necessary for embeded objects in collections, and 
-  """
-  data = deftree.to_string(element)
-  # escape double quotes:
-  data = data.replace('"','\\"')
-  # convert to multiline array
-  data = data.replace('\n','\\n\n')
-  return data
 
 def defold_remove_element(doc: deftree.Element,el_name):
   e = doc.get_element(el_name)
@@ -91,17 +68,16 @@ def process_tilesets(ldtk_root: Path, model: LdtkJSON, defold_root: Path):
   for tileset_idx, tileset in enumerate(model.defs.tilesets):
     tilesource_file = tilesources_dir /  (tileset.identifier +'.tilesource')
     logger.info('create tilesource :' + str(tilesource_file))
-    # TODO: dont use string template, just build the tree
-    tree = deftree.from_string(DEFOLD_TILESOURCE_TEMPLATE)
+    tree = deftree.DefTree()
     tilesource = tree.get_root()
     if tileset.rel_path is None:
       # TODO: HANDLE EMBEDED TILESET --> NO IMAGE!
       continue
     defold_image = str_path(path_ldtk_defold_relative(ldtk_root, defold_root, Path(tileset.rel_path) ))
-    tilesource.set_attribute("image", defold_image)
-    tilesource.set_attribute("tile_width", tileset.tile_grid_size)
-    tilesource.set_attribute("tile_height", tileset.tile_grid_size)
-    tilesource.set_attribute("collision",defold_image)
+    tilesource.add_attribute("image", defold_image)
+    tilesource.add_attribute("tile_width", tileset.tile_grid_size)
+    tilesource.add_attribute("tile_height", tileset.tile_grid_size)
+    tilesource.add_attribute("collision",defold_image)
     ## first create convex hulls - add collision groups if it is utilized:
     collision_groups_list = []
     total_tiles = tileset.c_hei * tileset.c_wid
@@ -131,7 +107,6 @@ def process_tilesets(ldtk_root: Path, model: LdtkJSON, defold_root: Path):
         for tile_id in  enum_tag.tile_ids:
           convex_hulls[tile_id]["collision_group"] = enum_val  
     ## output convex_hulls
-    e_idx = defold_remove_element(tilesource, "convex_hulls")
     for hull_idx, hull in enumerate(convex_hulls):
       e_hull = ( defold_element("convex_hulls",
         "index",hull["index"],
@@ -139,13 +114,13 @@ def process_tilesets(ldtk_root: Path, model: LdtkJSON, defold_root: Path):
         "collision_group",hull["collision_group"]
           )
       )
-      tilesource.insert(e_idx + hull_idx, e_hull)
+      tilesource.append(e_hull)
     # handle collision_groups list
     if len(collision_groups_list)>0:
-      #remove default:
-      a_idx = defold_remove_attribute(tilesource, "collision_groups")
       for group_idx, group in enumerate(collision_groups_list):
         tilesource.add_attribute("collision_groups",str(group))
+    else:
+      tilesource.add_attribute("collision_groups","default")
     # TODO: HANDLE animations from config or custom data?
     # TODO: HANDLE inner padding from config
     # TODO: HANDLE Sprite trim mode from config    
@@ -208,9 +183,9 @@ def process_worlds(ldtk_root: Path, model: LdtkJSON,  defold_root: Path, tilesou
     world_tree = deftree.DefTree()
     defworld = world_tree.get_root()
     defworld.add_attribute('name', world.identifier)
-    ## TODO: HANDLE HEIGHT INVERSION + WORLD LAYOUT TYPE (HORIZONTAL/VERTICAL LAYOUT) FOR LEVEL'S WORLD-POSITION
-      ## WE NEED TO CALCULATE THE MAX HEIGHT OF LEVELS --> WE NEED TO ITERATE OVER THE LEVELS AFTERWARDS!
+    ## TODO: handle levels world depth : build a collection for each depth in {world.identifier}_{level.depth}
     all_levels=[]
+    # levels_by_depth = dict()
     next_level_world_x=0
     next_level_world_y=0
     for level_idx, level in enumerate(world.levels):
@@ -284,7 +259,7 @@ def process_level(ldtk_root: Path, world: World,level: Level, defold_root: Path,
   tree = deftree.DefTree()
   lev = tree.get_root()
   lev.add_attribute('name', level.identifier)
-  lev.add_attribute('scale_along_z',0)
+  # lev.add_attribute('scale_along_z',0)
   z_delta_layer=0.01 # TODO: CONFIGURE Z DELTAS FOR LAYERS
   for def_layer in layers_tilemap:
     layer_z = (nb_layers-def_layer["index"]) * z_delta_layer 
