@@ -179,13 +179,11 @@ def process_worlds(ldtk_root: Path, model: LdtkJSON,  defold_root: Path, tilesou
   
   for world_idx, world in enumerate(model.worlds):
     logger.info('Start of world processing for world '+ world.identifier)
-    # start building world.collection file:
-    world_tree = deftree.DefTree()
-    defworld = world_tree.get_root()
-    defworld.add_attribute('name', world.identifier)
+    # First we loop throug all levels to build level collections files and recompute world positions
     ## TODO: handle levels world depth : build a collection for each depth in {world.identifier}_{level.depth}
+    # all_levels will store resulting data (ldtk level+defold data)
     all_levels=[]
-    # levels_by_depth = dict()
+    levels_by_depth = dict()
     next_level_world_x=0
     next_level_world_y=0
     for level_idx, level in enumerate(world.levels):
@@ -207,18 +205,31 @@ def process_worlds(ldtk_root: Path, model: LdtkJSON,  defold_root: Path, tilesou
         next_level_world_y = next_level_world_y + level.px_hei
       # process level data to create tilemaps, collections and data files
       deflevel = process_level(ldtk_root, world, level, defold_root, tilesources, enums, entities_def)
-      all_levels.append(deflevel)
       # recompute world position for defold:
       # in LDTK Y axis goes down, and anchor point is on top left corner of level.
       # in Defold, Y axis goes up and anchor point is on bottom left corner of level.
       # To get the same origin point (0,0) as in LDTK GUI, we invert the y coordinate and substract the height of level.
-      world_pos_el = defold_element('position','x', level.world_x,'y',  -level.world_y - level.px_hei)
+      deflevel["defold_world_x"]= level.world_x
+      deflevel["defold_world_y"]= -level.world_y - level.px_hei
+      all_levels.append(deflevel)
+      if not(level.world_depth in levels_by_depth):
+        levels_by_depth[str(level.world_depth)] = []
+      levels_by_depth[str(level.world_depth)].append(deflevel)
+      logger.info('Level processing ok for level '+ level.identifier)
+      
+    ## Now build World collections files:
+    # start building world.collection file:
+    world_tree = deftree.DefTree()
+    defworld = world_tree.get_root()
+    defworld.add_attribute('name', world.identifier)
+    for deflevel in all_levels:
+      world_pos_el = defold_element('position','x', deflevel["defold_world_x"],'y',  deflevel["defold_world_y"] )
       defworld.append(defold_element('collection_instances',
                                      'id', deflevel['identifier'] ,
                                      'collection', deflevel['defold_level_file'],
                                      None, world_pos_el
                                      ))
-      logger.info('Level processing ok for level '+ level.identifier) 
+    
     # Write World collection file
     worlds_dir = defold_root/ ldtk_root.relative_to(defold_root) / 'tilemaps'
     world_collection_file = worlds_dir / world.identifier / (world.identifier +'.collection')
@@ -278,7 +289,8 @@ def process_level(ldtk_root: Path, world: World,level: Level, defold_root: Path,
   level_collection_file = levels_dir / world.identifier / (level.identifier +'.collection')
   defold_write_tree(tree, level_collection_file)
   logger.info('Level written in '+str(level_collection_file))
-  return {"iid": level.iid, 
+  return {"level": level, 
+          "iid": level.iid, 
           "identifier": level.identifier, 
           "level_collection_file": level_collection_file, 
           "defold_level_file": path_defold_relative(level_collection_file, defold_root)
